@@ -1,0 +1,131 @@
+:root {
+    --bg-color: '#FAFAFA';
+    --secondary-color: '#FFFFFF';
+    --opposite-color: '#FAFAFA';
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    color: var(--opposite-color);
+}
+
+.skew-divider {
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+
+.skew-divider::before {
+    content: '';
+    position: absolute;
+    border-bottom: 100px solid var(--bg-color);
+    border-left: 100vw solid transparent;
+    top: -100px;
+}
+
+.skew-divider-secondary {
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+
+.skew-divider-secondary::before {
+    content: '';
+    position: absolute;
+    border-bottom: 100px solid var(--secondary-color);
+    border-left: 100vw solid transparent;
+    top: -50px;
+}
+
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #3F51B5;
+}
+
+.slick-track {
+    display: flex !important;
+}
+
+.slick-active {
+    margin: auto 0
+}
+
+.list-card {
+    width: auto;
+    margin: 10px;
+    font-size: 14px;
+}
+
+.list-card .list-bg {
+    opacity: .7;
+    position: absolute;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.list-hover:hover .list-bg {
+    opacity: 0.8;
+}
+
+.list-hover:hover .list-title {
+    margin-top: 180px;
+    height: 100px;
+}
+
+.list-card .list-score {
+    margin-top: 35px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.list-card .list-image {
+    object-fit: cover;
+    width: 180px;
+    height: 260px;
+}
+
+.list-card .list-title {
+    margin-bottom: 225px;
+    margin-top: 226px;
+    border-bottom-left-radius: 5px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    left: 0;
+}
+
+@media only screen and (max-width: 444px) {
+    .list-card .list-score {
+        margin-top: 35px;
+    }
+
+    .list-card .list-image {
+        width: 150px;
+        height: 230px;
+    }
+
+    .list-hover:hover .list-title {
+        margin-top: 160px;
+        height: 100px;
+    }
+
+    .list-card .list-title {
+        margin-bottom: 195px;
+        margin-top: 185px;
+        width: 150px;
+    }
+
+    .list-card {
+        font-size: 13px;
+        width: 150px;
+    }
+}
