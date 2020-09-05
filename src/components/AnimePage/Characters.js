@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid'
 import Slider from 'react-slick'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import ArrowForward from '@material-ui/icons/ArrowForward'
 
 import Stepper from './Stepper'
 
@@ -20,7 +22,7 @@ const Characters = props => {
     }, [activeStep, characters])
 
     return (
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={4}>
                     <Slider {...settings} ref={ref}>
@@ -31,10 +33,6 @@ const Characters = props => {
                 </Grid>
                 <Grid item xs={12} sm={8} className={classes.grid}>
                     <div className={classes.gridChild}>
-                        <Typography variant="h2">
-                            Characters
-                        </Typography>
-                        <Stepper activeStep={activeStep} setActiveStep={setActiveStep} steps={chara} characters={characters?.edges} />
                         <div>
                             <Typography variant='h4'>
                                 {active?.node.name.full}
@@ -42,6 +40,7 @@ const Characters = props => {
                             <Typography variant='h4'>
                                 {active?.node.name.native}
                             </Typography>
+                            <Stepper activeStep={activeStep} setActiveStep={setActiveStep} steps={chara} characters={characters?.edges} />
                             <Typography variant='body1' style={{ textAlign: 'justify' }}
                                 dangerouslySetInnerHTML={{ __html: active?.node.description }} >
                             </Typography>
@@ -49,6 +48,7 @@ const Characters = props => {
                     </div>
                 </Grid>
             </Grid>
+            <Button style={{ marginLeft: 'auto' }} endIcon={<ArrowForward/>} variant='contained' color='primary'>See All Characters</Button>
         </div>
     )
 }
@@ -64,12 +64,21 @@ const settings = {
     slidesToScroll: 1
 };
 
+//tatenoyuusha
 const chara = [
     { url: 'http://shieldhero-anime.jp/en/assets/img/chara/chara_0.png', id: 88817 },
     { url: 'http://shieldhero-anime.jp/en/assets/img/chara/chara_1.png', id: 88889 },
     { url: 'http://shieldhero-anime.jp/en/assets/img/chara/chara_6.png', id: 126828 },
     { url: 'http://shieldhero-anime.jp/en/assets/img/chara/chara_7.png', id: 129813 },
 ]
+
+//konosuba
+// const chara = [
+//     { url: 'http://konosuba.com/character/img/chara1.png', id: 89364 },
+//     { url: 'http://konosuba.com/character/img/chara2.png', id: 89362 },
+//     { url: 'http://konosuba.com/character/img/chara3.png', id: 89361 },
+//     { url: 'http://konosuba.com/character/img/chara4.png', id: 89363 },
+// ]
 
 const useStyles = makeStyles((theme) => ({
     root: {

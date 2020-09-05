@@ -93,3 +93,11 @@ $c_1: #353540;
         margin-bottom: 1em;
     }
 }
+
+@media only screen and (max-width: 470px) {
+    .steam-game-container {
+        width: 150px;
+        height: 230px;
+        margin-bottom: 1em;
+    }
+}

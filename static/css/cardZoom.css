@@ -10,12 +10,16 @@
     -moz-transform: scale(1);
     transition: all 200ms ease-in;
     transform: scale(1);
+    height: 100%;
+    width: 100%;
 }
 
 .style_prevu_kit img {
     filter: brightness(50%);
     height: 100%;
+    width: 100%;
     object-fit: cover;
+    max-height: 50vh;
 }
 
 .style_prevu_kit div {
@@ -29,10 +33,11 @@
 }
 
 .style_prevu_kit:hover img {
-    filter: brightness(80%);
+    filter: brightness(70%);
 }
 
 .style_prevu_kit:hover {
+    cursor: pointer;
     z-index: 2;
     -webkit-transition: all 200ms ease-in;
     -webkit-transform: scale(1.5);

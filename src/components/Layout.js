@@ -6,6 +6,7 @@ import yellow from '@material-ui/core/colors/yellow'
 import Navbar from './Navbar'
 import Hamburger from './Hamburger'
 import Footer from './Footer'
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 const Layout = ({ children }) => {
   const [isLightMode, setMode] = useState(false)
@@ -32,13 +33,15 @@ const Layout = ({ children }) => {
   }, [isLightMode])
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Navbar lightMode={setMode} isLightMode={isLightMode} toggleHamburger={toggleHamburger} />
-      <Hamburger isOpen={isOpenHamburger} toggleHamburger={toggleHamburger} />
-      <main className={classes.root}>{children}</main>
-      <Footer />
-    </ThemeProvider>
+    <ParallaxProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar lightMode={setMode} isLightMode={isLightMode} toggleHamburger={toggleHamburger} />
+        <Hamburger isOpen={isOpenHamburger} toggleHamburger={toggleHamburger} />
+        <main className={classes.root}>{children}</main>
+        <Footer />
+      </ThemeProvider>
+    </ParallaxProvider>
   )
 }
 

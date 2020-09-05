@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
+import RecommendIcon from '@material-ui/icons/RecordVoiceOver';
+import VideoIcon from '@material-ui/icons/VideoLibrary';
+import BookIcon from '@material-ui/icons/LibraryBooks';
 import UserIcon from '@material-ui/icons/SupervisedUserCircle';
 import InfoIcon from '@material-ui/icons/Info';
 
@@ -27,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const actions = [
-    { icon: <FileCopyIcon />, name: 'Copy' },
-    { icon: <SaveIcon />, name: 'Save' },
-    { icon: <PrintIcon />, name: 'Print', value:'description'},
+    { icon: <RecommendIcon />, name: 'Recommendations', value: 'recommendations' },
+    { icon: <VideoIcon />, name: 'Episodes', value: 'episodes' },
+    { icon: <BookIcon />, name: 'Synopsis', value: 'description' },
     { icon: <UserIcon />, name: 'Characters', value: 'characters' },
-    { icon: <InfoIcon />, name: 'Info', value: 'details' },
+    { icon: <InfoIcon />, name: 'Details', value: 'details' },
 ];
 
 export default function OpenIconSpeedDial(props) {
