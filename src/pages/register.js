@@ -17,7 +17,6 @@ import InfoIcon from '@material-ui/icons/Info';
 
 import { Parallax } from 'react-parallax'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import anime from 'animejs'
 
 import { useRecoilValue } from 'recoil'
 import { userData } from '../config/recoil/atoms/user'
@@ -45,14 +44,6 @@ const Register = props => {
     }
 
     useEffect(() => {
-        anime({
-            targets: '#wrapper',
-            translateY: [250, 0],
-            duration: 3000
-        });
-    }, [])
-
-    useEffect(() => {
         if (user) {
             setState({ ...state, name: user.displayName })
             if (activeStep === 0)
@@ -65,10 +56,13 @@ const Register = props => {
             blur={3}>
             <SEO title='Register' />
             <div className={classes.root}>
-                <Paper className={classes.wrapper} id='wrapper' elevation={10}>
+                <Paper className={classes.wrapper} elevation={10}>
                     <div style={{ marginBottom: '15px', textAlign: 'center' }}>
                         <Typography variant='h2'>
                             Register
+                        </Typography>
+                        <Typography variant='body1'>
+                            Quick register with google account.
                         </Typography>
                         <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
                             <Step>

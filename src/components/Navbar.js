@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container'
 import Avatar from '@material-ui/core/Avatar'
 
 import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu'
 import DarkIcon from '@material-ui/icons/NightsStay'
 import LightIcon from '@material-ui/icons/Brightness7'
 
@@ -44,6 +45,9 @@ const Navbar = props => {
         <AppBar position="sticky" color='primary'>
             <Container>
                 <Toolbar>
+                    {!user && <IconButton edge="start" onClick={handleToggleHamburger} className={classes.menuButton} color="inherit" aria-label="menu">
+                        <MenuIcon />
+                    </IconButton>}
                     <Link to='/' className={classes.title}>
                         <Typography variant="h6" >
                             Jojinime.
@@ -54,12 +58,6 @@ const Navbar = props => {
                             {isLightMode ? <LightIcon /> : <DarkIcon />}
                         </IconButton>
                     </Tooltip>
-                    {!user && <Link to='/login' className={classes.link}>
-                        <Button className={classes.button} >Login</Button>
-                    </Link>}
-                    {!user && <Link to='/register' className={classes.link}>
-                        <Button className={classes.button} >Register</Button>
-                    </Link>}
                     {user && <Link to='#' className={classes.link}>
                         <Button className={classes.button} onClick={handleToggleHamburger} endIcon={
                             <Avatar alt={user?.displayName} src={user?.photoURL} />

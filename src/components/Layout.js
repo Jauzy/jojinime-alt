@@ -28,7 +28,8 @@ const Layout = ({ children }) => {
   theme = responsiveFontSizes(theme)
 
   useEffect(() => {
-    setMode(isLightMode)
+    //required for material ui to work on gatsby lol
+    setMode(!!isLightMode)
   },[])
 
   useEffect(() => {

@@ -37,36 +37,36 @@ const Details = props => {
             </Grid>
             <Grid item xs={12} sm={7} md={9} style={{ display: 'flex', zIndex: 999 }}>
                 <div style={{ margin: 'auto 0', width: '100%' }}>
-                    <Typography variant='h3'><strong>{details.title?.romaji}</strong></Typography>
-                    <Typography variant='h5'>{details.title?.native}</Typography>
+                    <Typography variant='h3'><strong>{details?.title?.romaji}</strong></Typography>
+                    <Typography variant='h5'>{details?.title?.native}</Typography>
                     <div style={{ display: 'flex', margin: '.5em 0', alignItems: 'center' }}>
                         <div>
                             <StarRatings
-                                rating={parseFloat(details.meanScore || 0) / 20}
+                                rating={parseFloat(details?.meanScore || 0) / 20}
                                 starDimension="30px"
                                 starRatedColor={yellow[500]}
                             />
                         </div>
                         <div style={{ margin: '0 1em' }}>
                             <small>Score</small>
-                            {details.meanScore && <Typography variant='h5' style={{ textAlign: 'center' }}>{details.meanScore / 10}</Typography>}
+                            {details?.meanScore && <Typography variant='h5' style={{ textAlign: 'center' }}>{details?.meanScore / 10}</Typography>}
                         </div>
                     </div>
                     <div>
-                        {details.genres?.map(genre => (
+                        {details?.genres?.map(genre => (
                             <Chip label={genre} key={genre} style={{ margin: '0.5em 0.5em 0 0' }} />
                         ))}
                     </div>
                     <Grid container spacing={1} className={classes.marginTop}>
                         <Grid item sm={12} md={6} className={classes.fullWidth}>
-                            {details.rankings?.filter(item => item.allTime === true && item.type === 'POPULAR').map(item => (
+                            {details?.rankings?.filter(item => item.allTime === true && item.type === 'POPULAR').map(item => (
                                 <Button color='secondary' key={item.context} className={classes.fullWidth} variant='contained' startIcon={<FavouriteIcon />}>
                                     #{item.rank} {item.context}
                                 </Button>
                             ))}
                         </Grid>
                         <Grid item sm={12} md={6} className={classes.fullWidth}>
-                            {details.rankings?.filter(item => item.allTime === true && item.type === 'RATED').map(item => (
+                            {details?.rankings?.filter(item => item.allTime === true && item.type === 'RATED').map(item => (
                                 <Button className={classes.fullWidth} key={item.context} style={{ backgroundColor: yellow[500] }} variant='contained' startIcon={<StarIcon />}>
                                     #{item.rank} {item.context}
                                 </Button>

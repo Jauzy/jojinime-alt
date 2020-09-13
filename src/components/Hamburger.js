@@ -1,5 +1,5 @@
 import React from 'react'
-import { navigateTo } from 'gatsby'
+import { navigateTo, Link } from 'gatsby'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,7 +11,9 @@ import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 
 import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
+import ListIcon from '@material-ui/icons/List';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { useRecoilState } from 'recoil'
@@ -34,32 +36,54 @@ const Hamburger = props => {
     return (
         <Drawer anchor='left' open={isOpen} onClose={() => toggleHamburger(false)}>
             <div className={classes.root}>
-                <Avatar alt={user?.displayName} src={user?.photoURL} className={classes.avatar} />
-                <Typography variant='h6' className={classes.header}>
-                    {user?.displayName}
-                </Typography>
+                {user && <div>
+                    <Avatar alt={user?.displayName} src={user?.photoURL} className={classes.avatar} />
+                    <Typography variant='h6' className={classes.header}>
+                        {user?.displayName}
+                    </Typography>
+                </div>}
                 <List component="nav" className={classes.list}>
                     <Divider />
-                    <ListItem button>
-                        <ListItemIcon>
-                            <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Inbox" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <DraftsIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Drafts" />
-                    </ListItem>
+                    <Link to='/anime-page?id=99263' className={classes.link}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <InboxIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Anime Page" />
+                        </ListItem>
+                    </Link>
+                    <Link to='/anime-list' className={classes.link}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <ListIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Anime List" />
+                        </ListItem>
+                    </Link>
                     <Divider />
                     <Divider style={{ marginTop: 'auto' }} />
-                    <ListItem button onClick={logout}>
+                    {!user && <Link to='/register' className={classes.link}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PersonAddIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Register" />
+                        </ListItem>
+                    </Link>}
+                    {!user && <Link to='/login' className={classes.link}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <SubdirectoryArrowRightIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Login" />
+                        </ListItem>
+                    </Link>}
+                    {user && <ListItem button onClick={logout}>
                         <ListItemIcon>
                             <ExitToAppIcon />
                         </ListItemIcon>
                         <ListItemText primary="Logout" />
-                    </ListItem>
+                    </ListItem>}
                 </List>
             </div>
         </Drawer>
@@ -76,6 +100,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
         paddingTop: '30px'
+    },
+    link: {
+        textDecoration: 'unset',
     },
     avatar: {
         width: 150,

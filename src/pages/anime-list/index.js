@@ -1,11 +1,11 @@
 import React from 'react'
 
-const IndexPage = props => {
+const AnimeList = props => {
     return(
         <div>
-            INDEX
+            
         </div>
     )
 }
 
-export default IndexPage
+export default AnimeList
