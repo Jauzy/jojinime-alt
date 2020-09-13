@@ -18,7 +18,7 @@ const Characters = props => {
     useEffect(() => {
         if (ref)
             ref.current.slickGoTo(activeStep)
-        setActive(characters?.edges.filter(item => item.node.id == chara[activeStep].id)[0])
+        setActive(characters?.edges.filter(item => item.node.id === chara[activeStep].id)[0])
     }, [activeStep, characters])
 
     return (
@@ -27,7 +27,7 @@ const Characters = props => {
                 <Grid item xs={12} sm={4}>
                     <Slider {...settings} ref={ref}>
                         {chara.map(item => (
-                            <img src={item.url} key={item} width='100%' style={{ margin: 'auto' }} />
+                            <img src={item.url} alt='character' key={item} width='100%' style={{ margin: 'auto' }} />
                         ))}
                     </Slider>
                 </Grid>

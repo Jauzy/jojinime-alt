@@ -38,7 +38,6 @@ export default function OpenIconSpeedDial(props) {
     const { location } = props
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [hidden, setHidden] = React.useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -53,7 +52,6 @@ export default function OpenIconSpeedDial(props) {
             <SpeedDial
                 ariaLabel="SpeedDial openIcon example"
                 className={classes.speedDial}
-                hidden={hidden}
                 icon={<SpeedDialIcon />}
                 onClose={handleClose}
                 onOpen={handleOpen}

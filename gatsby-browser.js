@@ -12,3 +12,7 @@ import './static/css/cardZoom.css'
 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+
+
+import "firebase/auth"
+export { default as wrapRootElement } from './src/components/RootProvider';

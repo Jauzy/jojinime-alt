@@ -16,6 +16,21 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
+    `gatsby-plugin-material-ui`,
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: "AIzaSyA7VDCuahsJ056GsoJHUqB74hw9xU2Znh0",
+          authDomain: "jojinime.firebaseapp.com",
+          databaseURL: "https://jojinime.firebaseio.com",
+          projectId: "jojinime",
+          storageBucket: "jojinime.appspot.com",
+          messagingSenderId: "187285926728",
+          appId: "1:187285926728:web:db85735a4e666edbb7797d"
+        }
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

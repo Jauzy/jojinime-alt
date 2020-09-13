@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -8,7 +7,6 @@ import Tooltip from '@material-ui/core/Tooltip'
 
 import axios from 'axios'
 
-import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import SpeedDial from '../components/AnimePage/SpeedDial'
 import Character from '../components/AnimePage/Characters'
@@ -22,7 +20,6 @@ import { Parallax } from 'react-scroll-parallax';
 const IndexPage = props => {
     const [state, setState] = useState({})
     const [onHover, setOnHover] = useState(0)
-    const classes = useStyles()
 
     useEffect(() => {
         axios.post('https://graphql.anilist.co', { variables, query }).then(response => {
@@ -31,8 +28,8 @@ const IndexPage = props => {
     }, [])
 
     return (
-        <Layout>
-            <SEO title={state.title?.romaji} />
+        <div>
+            <SEO title={state.title ? state.title?.romaji : 'Anime Page'} />
             <SpeedDial location={props.location} />
             <section id='details'>
                 <Header image={'https://images6.alphacoders.com/993/thumb-1920-993076.png'} title={state.title} />
@@ -59,8 +56,8 @@ const IndexPage = props => {
                         <Grid item xs={1} style={{ display: 'flex', alignItems: 'center' }}>
                             <Parallax y={[-20, 20]} tagOuter="div">
                                 <Typography variant="h1">
-                                    {'CHARA'.split('').map(item => (
-                                        <div>{item}</div>
+                                    {'CHARA'.split('').map((item, index) => (
+                                        <div key={item + index}>{item}</div>
                                     ))}
                                 </Typography>
                             </Parallax>
@@ -112,10 +109,10 @@ const IndexPage = props => {
             </Container>
             <section id='recommendations' style={{ marginTop: '0em' }}>
                 <Grid container spacing={0} style={{ paddingBottom: '5em', paddingTop: '3em', overflow: 'hidden' }}>
-                    {state.recommendations?.edges.map(item => (
-                        <Grid item xs={12} sm={6} md={3}>
-                            <div class="style_prevu_kit">
-                                <img src={item.node.mediaRecommendation.coverImage.extraLarge} />
+                    {state.recommendations?.edges.map((item, index) => (
+                        <Grid item xs={12} sm={6} md={3} key={index}>
+                            <div className="style_prevu_kit">
+                                <img src={item.node.mediaRecommendation.coverImage.extraLarge} alt='recommendation' />
                                 <div>
                                     <Typography variant='h6'>
                                         {item.node.mediaRecommendation.title.native}
@@ -139,15 +136,11 @@ const IndexPage = props => {
                 </Container>
             </section>
 
-        </Layout >
+        </div >
     )
 }
 
 export default IndexPage
-
-const useStyles = makeStyles((theme) => ({
-    epsSec: { width: '2em', height: '2em', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' },
-}));
 
 const query = `
     query($id: Int) {

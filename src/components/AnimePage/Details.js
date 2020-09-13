@@ -49,7 +49,7 @@ const Details = props => {
                         </div>
                         <div style={{ margin: '0 1em' }}>
                             <small>Score</small>
-                            <Typography variant='h5' style={{ textAlign: 'center' }}>{details.meanScore / 10}</Typography>
+                            {details.meanScore && <Typography variant='h5' style={{ textAlign: 'center' }}>{details.meanScore / 10}</Typography>}
                         </div>
                     </div>
                     <div>
@@ -59,15 +59,15 @@ const Details = props => {
                     </div>
                     <Grid container spacing={1} className={classes.marginTop}>
                         <Grid item sm={12} md={6} className={classes.fullWidth}>
-                            {details.rankings?.filter(item => item.allTime === true && item.type == 'POPULAR').map(item => (
-                                <Button color='secondary' className={classes.fullWidth} variant='contained' startIcon={<FavouriteIcon />}>
+                            {details.rankings?.filter(item => item.allTime === true && item.type === 'POPULAR').map(item => (
+                                <Button color='secondary' key={item.context} className={classes.fullWidth} variant='contained' startIcon={<FavouriteIcon />}>
                                     #{item.rank} {item.context}
                                 </Button>
                             ))}
                         </Grid>
                         <Grid item sm={12} md={6} className={classes.fullWidth}>
-                            {details.rankings?.filter(item => item.allTime === true && item.type == 'RATED').map(item => (
-                                <Button className={classes.fullWidth} style={{ backgroundColor: yellow[500] }} variant='contained' startIcon={<StarIcon />}>
+                            {details.rankings?.filter(item => item.allTime === true && item.type === 'RATED').map(item => (
+                                <Button className={classes.fullWidth} key={item.context} style={{ backgroundColor: yellow[500] }} variant='contained' startIcon={<StarIcon />}>
                                     #{item.rank} {item.context}
                                 </Button>
                             ))}

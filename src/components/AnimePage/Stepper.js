@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -9,24 +9,18 @@ import clsx from 'clsx';
 const CharaStepper = props => {
     const { activeStep, setActiveStep, steps } = props
     const classes = useStyles();
-    const [completed, setCompleted] = React.useState(new Set());
 
     const handleStep = (step) => () => {
         setActiveStep(step);
     };
-
-    function isStepComplete(step) {
-        return completed.has(step);
-    }
 
     return (
         <div className={classes.root}>
             <Stepper alternativeLabel nonLinear activeStep={activeStep}>
                 {steps?.map((label, index) => {
                     return (
-                        <Step key={label}>
-                            <StepLabel StepIconComponent={ColorlibStepIcon} onClick={handleStep(index)}
-                                completed={isStepComplete(index)}>
+                        <Step key={label.id}>
+                            <StepLabel StepIconComponent={ColorlibStepIcon} onClick={handleStep(index)}>
                             </StepLabel>
                         </Step>
                     );

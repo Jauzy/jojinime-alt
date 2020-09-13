@@ -5,3 +5,5 @@
  */
 
 // You can delete this file if you're not using it
+import "firebase/auth"
+export { default as wrapRootElement } from './src/components/RootProvider';
