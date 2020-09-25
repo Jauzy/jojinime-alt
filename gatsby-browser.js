@@ -9,6 +9,7 @@ import './static/css/index.css'
 import './static/css/steam-game.scss'
 import './static/css/footer.css'
 import './static/css/cardZoom.css'
+import './static/css/cube-anime.css'
 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";

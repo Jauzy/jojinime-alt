@@ -10,7 +10,7 @@ const DetailsSection = props => {
     const { anime } = props
     return (
         <section id='details'>
-            <Header image={'https://images6.alphacoders.com/993/thumb-1920-993076.png'} title={anime?.title} />
+            <Header image={'https://images6.alphacoders.com/100/thumb-1920-1000479.jpg'} />
             <div className='skew-divider' />
             <Container style={{ marginTop: '-15em' }}>
                 <Details details={anime} />

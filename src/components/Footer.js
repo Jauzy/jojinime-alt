@@ -13,7 +13,7 @@ const Footer = (props) => {
                     <Typography variant='body2'>
                         Jojinime adalah web streaming dan download anime non profit yang dibuat berdasarkan motivasi terwujudnya Web Anime yang Canggih, Cepat, juga tanpa Iklan dan ClickBait yang mengganggu. Web ini menggunakan server Google Platform yang terpercaya untuk kecepatan Streaming nya.
                     </Typography>
-                    <Typography variant='body2' style={{ marginTop: '1em' }}>© {new Date().getFullYear()} Jojinime, All rights reserved. API <a href='https://anilist.gitbook.io/anilist-apiv2-docs/'>Anilist</a>.</Typography>
+                    <Typography variant='body2' style={{ marginTop: '1em' }}>© {new Date().getFullYear()} Jojinime, All rights reserved. API <a href='https://anilist.gitbook.io/anilist-apiv2-docs/'>Anilist</a>. Framework Material UI.</Typography>
                 </Grid>
                 <Grid item xs={12} md={2} lg={4} className="footer-nav">
                     <Typography variant='h4'>Menu —</Typography>

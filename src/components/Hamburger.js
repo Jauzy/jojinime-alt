@@ -15,6 +15,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
 import ListIcon from '@material-ui/icons/List';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import UserIcon from '@material-ui/icons/SupervisedUserCircle'
 
 import { useRecoilState } from 'recoil'
 import { userData } from '../config/recoil/atoms/user'
@@ -44,7 +45,7 @@ const Hamburger = props => {
                 </div>}
                 <List component="nav" className={classes.list}>
                     <Divider />
-                    <Link to='/anime-page?id=99263' className={classes.link}>
+                    <Link to='/anime-page?id=101280' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
                                 <InboxIcon />
@@ -52,7 +53,7 @@ const Hamburger = props => {
                             <ListItemText primary="Anime Page" />
                         </ListItem>
                     </Link>
-                    <Link to='/anime-list' className={classes.link}>
+                    <Link to='/anime-list' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
                                 <ListIcon />
@@ -60,9 +61,17 @@ const Hamburger = props => {
                             <ListItemText primary="Anime List" />
                         </ListItem>
                     </Link>
+                    <Link to='/about/jauzy' className={classes.link} onClick={() => toggleHamburger(false)}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <UserIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="About Jauzy" />
+                        </ListItem>
+                    </Link>
                     <Divider />
                     <Divider style={{ marginTop: 'auto' }} />
-                    {!user && <Link to='/register' className={classes.link}>
+                    {!user && <Link to='/register' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
                                 <PersonAddIcon />
@@ -70,7 +79,7 @@ const Hamburger = props => {
                             <ListItemText primary="Register" />
                         </ListItem>
                     </Link>}
-                    {!user && <Link to='/login' className={classes.link}>
+                    {!user && <Link to='/login' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
                                 <SubdirectoryArrowRightIcon />

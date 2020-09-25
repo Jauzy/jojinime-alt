@@ -8,6 +8,9 @@ import Tooltip from '@material-ui/core/Tooltip'
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container'
 import Avatar from '@material-ui/core/Avatar'
+import Slide from '@material-ui/core/Slide';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Box from '@material-ui/core/Box'
 
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu'
@@ -30,6 +33,8 @@ const Navbar = props => {
         toggleHamburger(true)
     }
 
+    const trigger = useScrollTrigger();
+
     useEffect(() => {
         if (firebaseAuth) {
             firebaseAuth.onAuthStateChanged(user => {
@@ -42,30 +47,34 @@ const Navbar = props => {
     }, [])
 
     return (
-        <AppBar position="sticky" color='primary'>
-            <Container>
-                <Toolbar>
-                    {!user && <IconButton edge="start" onClick={handleToggleHamburger} className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>}
-                    <Link to='/' className={classes.title}>
-                        <Typography variant="h6" >
-                            Jojinime.
-                        </Typography>
-                    </Link>
-                    <Tooltip title='Toggle Light/Dark Theme'>
-                        <IconButton color="inherit" onClick={handleToggleTheme}>
-                            {isLightMode ? <LightIcon /> : <DarkIcon />}
-                        </IconButton>
-                    </Tooltip>
-                    {user && <Link to='#' className={classes.link}>
-                        <Button className={classes.button} onClick={handleToggleHamburger} endIcon={
-                            <Avatar alt={user?.displayName} src={user?.photoURL} />
-                        } >{user?.displayName}</Button>
-                    </Link>}
-                </Toolbar>
-            </Container>
-        </AppBar>
+        <Slide appear={true} direction="down" in={!trigger}>
+            <AppBar >
+                <Container>
+                    <Toolbar style={{padding:'0.5em 0'}}>
+                        {!user && <IconButton edge="start" onClick={handleToggleHamburger} className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon />
+                        </IconButton>}
+                        <Box style={{ display: 'flex', width: '100%', alignItems:'center' }}>
+                            <Link to='/' className={classes.title}>
+                                <Typography variant="h6" style={{ fontWeight: 'bold' }} >
+                                    じょじにめ.
+                                </Typography>
+                            </Link>
+                            <Tooltip style={{ marginLeft: 'auto' }} title='Toggle Light/Dark Theme'>
+                                <IconButton color="inherit" onClick={handleToggleTheme}>
+                                    {isLightMode ? <LightIcon /> : <DarkIcon />}
+                                </IconButton>
+                            </Tooltip>
+                            {user && <Link to='#' className={classes.link}>
+                                <Button className={classes.button} onClick={handleToggleHamburger} endIcon={
+                                    <Avatar alt={user?.displayName} src={user?.photoURL} />
+                                } >{user?.displayName}</Button>
+                            </Link>}
+                        </Box>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        </Slide>
     )
 }
 
@@ -84,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         color: 'white',
-        flexGrow: 1,
         textDecoration: 'unset',
     },
 }));

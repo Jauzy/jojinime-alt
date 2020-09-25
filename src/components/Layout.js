@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { createMuiTheme, makeStyles, ThemeProvider, responsiveFontSizes } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import yellow from '@material-ui/core/colors/yellow'
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { RecoilRoot } from 'recoil'
 
@@ -10,31 +9,29 @@ import Hamburger from './Hamburger'
 import Footer from './Footer'
 
 const Layout = ({ children }) => {
-  const [isLightMode, setMode] = useState(false)
+  const [isLightMode, setMode] = useState(true)
   const [isOpenHamburger, toggleHamburger] = useState(false)
   const classes = useStyles()
 
   let theme = createMuiTheme({
     palette: {
       type: isLightMode ? 'light' : 'dark',
-      warning: {
-        main: yellow[500]
+      background: {
+        default: isLightMode ? '#EDF1F5' : '#0B1622',
+        paper: isLightMode ? '#FAFAFA' : '#151F2E'
       }
     },
-    status: {
-      warning: yellow[500]
-    }
   });
   theme = responsiveFontSizes(theme)
 
   useEffect(() => {
     //required for material ui to work on gatsby lol
-    setMode(!!isLightMode)
-  },[])
+    setMode(!isLightMode)
+  }, [])
 
   useEffect(() => {
-    document.documentElement.style.setProperty('--bg-color', isLightMode ? '#FAFAFA' : '#303030');
-    document.documentElement.style.setProperty('--secondary-color', isLightMode ? '#FFF' : '#424242');
+    document.documentElement.style.setProperty('--bg-color', isLightMode ? '#EDF1F5' : '#0B1622');
+    document.documentElement.style.setProperty('--secondary-color', isLightMode ? '#FAFAFA' : '#151F2E');
     document.documentElement.style.setProperty('--opposite-color', isLightMode ? '#000' : '#FFF');
   }, [isLightMode])
 

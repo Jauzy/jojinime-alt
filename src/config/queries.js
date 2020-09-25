@@ -10,7 +10,32 @@ query($id: Int) {
         coverImage {
             extraLarge
             large
+            color
         }
+        nextAiringEpisode {
+            timeUntilAiring 
+            episode
+        }
+        relations {
+            edges{
+                node {
+                    title {
+                        romaji
+                    }
+                    coverImage {
+                        large
+                        color
+                    }
+                    genres
+                    type
+                    format
+                }
+                relationType
+            }
+        }
+        season
+        seasonYear
+        format
         bannerImage
         episodes
         description
@@ -26,8 +51,18 @@ query($id: Int) {
             edges {
                 node {
                     name
+                    isAnimationStudio
                 }
             }
+        }
+        trailer {
+            id
+        }
+        status
+        externalLinks {
+            id
+            url
+            site
         }
         characters {
             edges {
@@ -42,7 +77,7 @@ query($id: Int) {
                         native
                     }
                     image {
-                        large
+                        medium
                     }
                     description(asHtml: true)
                 }
@@ -51,8 +86,9 @@ query($id: Int) {
                     name {
                         full
                     }
+                    language
                     image {
-                        large
+                        medium
                     }
                 }
             }
