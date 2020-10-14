@@ -15,7 +15,7 @@ import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissa
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 
 const SteamGame = props => {
-    const { anime } = props
+    const { anime, label } = props
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handlePopoverOpen = (event) => {
@@ -40,6 +40,11 @@ const SteamGame = props => {
     return (
         <div onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
             <Card />
+            {label && <Box style={{ textOverflow: 'ellipsis' }}>
+                <Typography variant='subtitle1' color='textSecondary' noWrap style={{ fontWeight: 'bold', marginTop:'.5em' }} >
+                    {anime?.title.romaji}
+                </Typography>
+            </Box>}
             <Popper open={open} anchorEl={anchorEl} placement={'right-start'} style={{ zIndex: 99 }} transition
                 modifiers={{
                     flip: {
@@ -55,6 +60,9 @@ const SteamGame = props => {
                         <div style={{ display: 'flex' }}>
                             <ArrowLeftIcon style={{ fontSize: '4em', marginRight: '-0.45em', color: anime?.coverImage.color }} />
                             <Paper style={{ padding: '2em' }} elevation={6}>
+                                {anime ? <Typography variant='h6' style={{ color: anime?.coverImage.color }}>
+                                    {anime.title.romaji}
+                                </Typography> : <Skeleton variant='text' width='200px' style={{ marginRight: '1em' }} />}
                                 <div style={{ display: 'flex' }}>
                                     {anime ?
                                         <Typography variant='h6' style={{ marginRight: '1em' }}>
@@ -91,7 +99,7 @@ const SteamGame = props => {
                                     </div>
                                 </div>
                                 <Typography variant='body1' style={{ fontWeight: 'bold', marginTop: '0.5em', color: anime?.coverImage.color }}>
-                                    {anime?.studios.edges.filter(node => node.node.isAnimationStudio)[0].node.name}
+                                    {anime?.studios.edges.filter(node => node?.node.isAnimationStudio)[0]?.node.name}
                                 </Typography>
                                 {anime && <Typography variant='body2' style={{ marginBottom: '0.5em' }}>
                                     {anime?.format}  •  {anime?.episodes ? `${anime?.episodes} episodes` : ''}

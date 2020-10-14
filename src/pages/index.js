@@ -25,7 +25,8 @@ const IndexPage = props => {
     return (
         <Box>
             <SEO title='Home' />
-            <Header image={'https://images2.alphacoders.com/748/thumb-1920-748309.png'} title='JOJINIME' blur={3} />
+            <Header image={'https://images2.alphacoders.com/748/thumb-1920-748309.png'} title='Jojinime.'
+                desc='Next Generation Anime Streaming Platform.' blur={3} social />
             <div className='skew-divider' />
 
             <Container style={{ marginBottom: '2em' }}>
@@ -137,7 +138,7 @@ const IndexPage = props => {
                 </Grid>
             </Container>
 
-            <Container style={{marginBottom:'2em'}}>
+            <Container style={{ marginBottom: '2em' }}>
                 <Box style={{ display: 'flex', alignItems: 'center' }}>
                     <Typography variant='h4' style={{ fontWeight: 'bold' }}>
                         Latest Updated Streaming Anime

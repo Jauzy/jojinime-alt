@@ -48,13 +48,13 @@ const Navbar = props => {
 
     return (
         <Slide appear={true} direction="down" in={!trigger}>
-            <AppBar >
+            <AppBar color='inherit' >
                 <Container>
-                    <Toolbar style={{padding:'0.5em 0'}}>
+                    <Toolbar style={{ padding: '0.5em 0' }}>
                         {!user && <IconButton edge="start" onClick={handleToggleHamburger} className={classes.menuButton} color="inherit" aria-label="menu">
                             <MenuIcon />
                         </IconButton>}
-                        <Box style={{ display: 'flex', width: '100%', alignItems:'center' }}>
+                        <Box style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
                             <Link to='/' className={classes.title}>
                                 <Typography variant="h6" style={{ fontWeight: 'bold' }} >
                                     じょじにめ.
@@ -81,9 +81,6 @@ const Navbar = props => {
 export default Navbar
 
 const useStyles = makeStyles((theme) => ({
-    button: {
-        color: '#fff'
-    },
     link: {
         textDecoration: 'unset',
         margin: '0 5px'
@@ -92,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(2),
     },
     title: {
-        color: 'white',
         textDecoration: 'unset',
     },
 }));

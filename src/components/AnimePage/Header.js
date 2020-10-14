@@ -11,28 +11,28 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 
 const Header = props => {
-    const { image, title, blur } = props
+    const { image, title, desc, social, blur } = props
     return (
         image ? <Parallax bgImage={image} strength={500} blur={blur ? blur : 0}>
             {!title && <div style={{ height: '60vh' }} />}
             {title && <div style={{ height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Box style={{ padding: '2em', color: 'white' }}>
                     <Typography variant='h2' style={{ fontWeight: 'bold' }}>
-                        Jojinime.
-                </Typography>
+                        {title}
+                    </Typography>
                     <Typography variant='h4' style={{ fontWeight: 'bold' }}>
-                        Next Generation Anime Streaming Platform.
-                </Typography>
-                    <Box style={{ display: 'flex', alignItems: 'center' }}>
+                        {desc}
+                    </Typography>
+                    {social && <Box style={{ display: 'flex', alignItems: 'center' }}>
                         <InstagramIcon style={{ marginRight: '0.5em' }} />
                         {[FacebookIcon, TwitterIcon, RssFeedIcon].map((Icon, index) => (
                             <Icon key={index + 'IconSocial'} style={{ margin: '0.5em' }} />
                         ))}
-                    </Box>
+                    </Box>}
                 </Box>
             </div>}
-        </Parallax> : 
-        <Skeleton variant='rect' height='60vh' width='100%' />
+        </Parallax> :
+            <Skeleton variant='rect' height='60vh' width='100%' />
     )
 }
 
