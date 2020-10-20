@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@material-ui/core/Button'
 import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
@@ -13,9 +14,9 @@ import Countdown from 'react-countdown';
 import MoodIcon from '@material-ui/icons/Mood';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-const SteamGame = props => {
-    const { anime, label } = props
+const ListCard = ({ anime }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handlePopoverOpen = (event) => {
@@ -27,24 +28,13 @@ const SteamGame = props => {
     };
 
     const open = Boolean(anchorEl);
-
-    const Card = () => (
-        <div className={'steam-game-container'} id='card' >
-            <div className="b-game-card">
-                <div className="b-game-card__cover"
-                    style={{ backgroundImage: `url(${anime?.coverImage?.extraLarge})`, borderRadius: '10px' }} />
-            </div>
-        </div>
-    )
-
     return (
-        <div onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
-            <Card />
-            {label && <Box style={{ textOverflow: 'ellipsis' }}>
-                <Typography variant='subtitle1' color='textSecondary' noWrap style={{ fontWeight: 'bold', marginTop: '.5em' }} >
-                    {anime?.title.romaji}
+        <Box>
+            <Button color='default' style={{ textAlign: 'start' }} startIcon={<ChevronRightIcon />} onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
+                <Typography variant='inherit'>
+                    {anime.title.romaji}
                 </Typography>
-            </Box>}
+            </Button>
             <Popper open={open} anchorEl={anchorEl} placement={'right-start'} style={{ zIndex: 99 }} transition
                 modifiers={{
                     flip: {
@@ -110,7 +100,7 @@ const SteamGame = props => {
                                 </Box>}
                                 <div>
                                     {anime?.genres?.map(genre => (
-                                        <Chip label={genre} key={genre} style={{ margin: '0.5em 0.5em 0 0', backgroundColor: anime?.coverImage.color, color:'white' }} />
+                                        <Chip label={genre} key={genre} style={{ margin: '0.5em 0.5em 0 0', backgroundColor: anime?.coverImage.color, color: 'white' }} />
                                     ))}
                                 </div>
                             </Paper>
@@ -118,8 +108,8 @@ const SteamGame = props => {
                     </Fade>
                 )}
             </Popper>
-        </div>
+        </Box>
     )
 }
 
-export default SteamGame
+export default ListCard

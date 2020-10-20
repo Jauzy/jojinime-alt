@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil'
 
 import SEO from '../components/Seo'
 import SpeedDial from '../components/AnimePage/SpeedDial'
+import Layout from '../components/Layout'
 
 import Characters from '../components/Sections/Characters'
 import Details from '../components/Sections/Details'
@@ -34,7 +35,7 @@ const AnimePage = props => {
     }, [props.location])
 
     return (
-        <div>
+        <Layout>
             <SEO title={anime?.title ? anime?.title?.romaji : 'Anime Page'} />
             <SpeedDial location={props.location} />
             <Details anime={anime} />
@@ -70,7 +71,7 @@ const AnimePage = props => {
                 </Container>
             </section>
 
-        </div >
+        </Layout>
     )
 }
 

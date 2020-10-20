@@ -21,6 +21,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useRecoilValue } from 'recoil'
 import { userData } from '../config/recoil/atoms/user'
 import SEO from '../components/Seo'
+import Layout from '../components/Layout'
 import { uiConfig, firebaseAuth } from '../config/firebase'
 
 const Register = props => {
@@ -52,71 +53,73 @@ const Register = props => {
     }, [user])
 
     return (
-        <Parallax bgImage={'https://images2.alphacoders.com/966/thumb-1920-966053.jpg'} bgImageAlt='parallaxBgImg' strength={500}
-            blur={3}>
-            <SEO title='Register' />
-            <div className={classes.root}>
-                <Paper className={classes.wrapper} elevation={10}>
-                    <div style={{ marginBottom: '15px', textAlign: 'center' }}>
-                        <Typography variant='h2'>
-                            Register
+        <Layout>
+            <Parallax bgImage={'https://images2.alphacoders.com/966/thumb-1920-966053.jpg'} bgImageAlt='parallaxBgImg' strength={500}
+                blur={3}>
+                <SEO title='Register' />
+                <div className={classes.root}>
+                    <Paper className={classes.wrapper} elevation={10}>
+                        <div style={{ marginBottom: '15px', textAlign: 'center' }}>
+                            <Typography variant='h2'>
+                                Register
                         </Typography>
-                        <Typography variant='body1'>
-                            Quick register with google account.
+                            <Typography variant='body1'>
+                                Quick register with google account.
                         </Typography>
-                        <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-                            <Step>
-                                <StepLabel StepIconComponent={ColorlibStepIcon}>
-                                    Sign in with Google
+                            <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+                                <Step>
+                                    <StepLabel StepIconComponent={ColorlibStepIcon}>
+                                        Sign in with Google
                                 </StepLabel>
-                            </Step>
-                            <Step>
-                                <StepLabel StepIconComponent={ColorlibStepIcon}>
-                                    Fill in Info
+                                </Step>
+                                <Step>
+                                    <StepLabel StepIconComponent={ColorlibStepIcon}>
+                                        Fill in Info
                                 </StepLabel>
-                            </Step>
-                            <Step>
-                                <StepLabel StepIconComponent={ColorlibStepIcon}>
-                                    Review
+                                </Step>
+                                <Step>
+                                    <StepLabel StepIconComponent={ColorlibStepIcon}>
+                                        Review
                                 </StepLabel>
-                            </Step>
-                        </Stepper>
-                        {activeStep === 0 && <div>
-                            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
-                            <Typography variant='body2'>
-                                Please sign in with your google account to continue.
+                                </Step>
+                            </Stepper>
+                            {activeStep === 0 && <div>
+                                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
+                                <Typography variant='body2'>
+                                    Please sign in with your google account to continue.
                             </Typography>
-                        </div>}
-                        {activeStep === 1 && <div>
-                            <TextField id='name' value={state.name} onChange={onChange} label="Your Name"
-                                helperText='Fill in your name.' variant="filled" className={classes.input} />
-                            <TextField id='password' type='password' value={state.password} onChange={onChange}
-                                helperText='Create your password.' label="Password"
-                                variant="filled" className={classes.input} />
-                            <Button style={{ height: '40px' }} className={classes.input} onClick={() => handleNext()}
-                                variant='contained' color='primary'>Next</Button>
-                        </div>}
-                        {activeStep === 2 && <div>
-                            <TextField disabled value={state.name} label="Your Name" variant="filled" className={classes.input} />
-                            <TextField disabled type='password' value={state.password} label="Password" variant="filled" className={classes.input} />
-                            <Typography variant='body2'>
-                                Go Back to Edit, Finish to Register.
+                            </div>}
+                            {activeStep === 1 && <div>
+                                <TextField id='name' value={state.name} onChange={onChange} label="Your Name"
+                                    helperText='Fill in your name.' variant="filled" className={classes.input} />
+                                <TextField id='password' type='password' value={state.password} onChange={onChange}
+                                    helperText='Create your password.' label="Password"
+                                    variant="filled" className={classes.input} />
+                                <Button style={{ height: '40px' }} className={classes.input} onClick={() => handleNext()}
+                                    variant='contained' color='primary'>Next</Button>
+                            </div>}
+                            {activeStep === 2 && <div>
+                                <TextField disabled value={state.name} label="Your Name" variant="filled" className={classes.input} />
+                                <TextField disabled type='password' value={state.password} label="Password" variant="filled" className={classes.input} />
+                                <Typography variant='body2'>
+                                    Go Back to Edit, Finish to Register.
                             </Typography>
-                            <Grid container spacing={3}>
-                                <Grid xs={6} item>
-                                    <Button style={{ height: '40px' }} className={classes.input} onClick={() => handleBack()}
-                                        variant='contained' color='primary'>Back</Button>
+                                <Grid container spacing={3}>
+                                    <Grid xs={6} item>
+                                        <Button style={{ height: '40px' }} className={classes.input} onClick={() => handleBack()}
+                                            variant='contained' color='primary'>Back</Button>
+                                    </Grid>
+                                    <Grid xs={6} item>
+                                        <Button style={{ height: '40px' }} className={classes.input}
+                                            variant='contained' color='primary'>Finish</Button>
+                                    </Grid>
                                 </Grid>
-                                <Grid xs={6} item>
-                                    <Button style={{ height: '40px' }} className={classes.input}
-                                        variant='contained' color='primary'>Finish</Button>
-                                </Grid>
-                            </Grid>
-                        </div>}
-                    </div>
-                </Paper>
-            </div>
-        </Parallax>
+                            </div>}
+                        </div>
+                    </Paper>
+                </div>
+            </Parallax>
+        </Layout>
     )
 }
 

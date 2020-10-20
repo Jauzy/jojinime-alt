@@ -21,13 +21,16 @@ import { useRecoilState } from 'recoil'
 import { userData } from '../config/recoil/atoms/user'
 import { firebaseAuth } from '../config/firebase'
 
+import { isDarkMode as atomDarkMode } from '../config/recoil/atoms/utils'
+
 const Navbar = props => {
-    const { lightMode, isLightMode, toggleHamburger } = props
+    const { toggleHamburger } = props
+    const [isDarkMode, setDarkMode] = useRecoilState(atomDarkMode)
     const [user, setUser] = useRecoilState(userData)
     const classes = useStyles();
 
     const handleToggleTheme = () => {
-        lightMode(!isLightMode)
+        setDarkMode(!isDarkMode)
     }
     const handleToggleHamburger = () => {
         toggleHamburger(true)
@@ -62,13 +65,13 @@ const Navbar = props => {
                             </Link>
                             <Tooltip style={{ marginLeft: 'auto' }} title='Toggle Light/Dark Theme'>
                                 <IconButton color="inherit" onClick={handleToggleTheme}>
-                                    {isLightMode ? <LightIcon /> : <DarkIcon />}
+                                    {!isDarkMode ? <LightIcon /> : <DarkIcon />}
                                 </IconButton>
                             </Tooltip>
                             {user && <Link to='#' className={classes.link}>
                                 <Button className={classes.button} onClick={handleToggleHamburger} endIcon={
                                     <Avatar alt={user?.displayName} src={user?.photoURL} />
-                                } >{user?.displayName}</Button>
+                                } >{window.innerWidth > 700 ? `${user?.displayName}` : ""}</Button>
                             </Link>}
                         </Box>
                     </Toolbar>

@@ -48,15 +48,23 @@ const Hamburger = props => {
                     <Link to='/anime-page?id=101280' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
-                                <InboxIcon />
+                                <InboxIcon color='primary' />
                             </ListItemIcon>
                             <ListItemText primary="Anime Page" />
+                        </ListItem>
+                    </Link>
+                    <Link to='/streaming?id=21878' className={classes.link} onClick={() => toggleHamburger(false)}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <InboxIcon color='primary' />
+                            </ListItemIcon>
+                            <ListItemText primary="Streaming" />
                         </ListItem>
                     </Link>
                     <Link to='/anime-list' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
-                                <ListIcon />
+                                <ListIcon color='primary' />
                             </ListItemIcon>
                             <ListItemText primary="Anime List" />
                         </ListItem>
@@ -64,7 +72,7 @@ const Hamburger = props => {
                     <Link to='/about/jauzy' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
-                                <UserIcon />
+                                <UserIcon color='primary' />
                             </ListItemIcon>
                             <ListItemText primary="About Jauzy" />
                         </ListItem>
@@ -74,7 +82,7 @@ const Hamburger = props => {
                     {!user && <Link to='/register' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
-                                <PersonAddIcon />
+                                <PersonAddIcon color='primary' />
                             </ListItemIcon>
                             <ListItemText primary="Register" />
                         </ListItem>
@@ -82,14 +90,14 @@ const Hamburger = props => {
                     {!user && <Link to='/login' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>
-                                <SubdirectoryArrowRightIcon />
+                                <SubdirectoryArrowRightIcon color='primary' />
                             </ListItemIcon>
                             <ListItemText primary="Login" />
                         </ListItem>
                     </Link>}
                     {user && <ListItem button onClick={logout}>
                         <ListItemIcon>
-                            <ExitToAppIcon />
+                            <ExitToAppIcon color='secondary' />
                         </ListItemIcon>
                         <ListItemText primary="Logout" />
                     </ListItem>}
@@ -105,10 +113,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: 300,
         height: '100%',
-        backgroundColor: theme.palette.background.paper,
         display: 'flex',
         flexDirection: 'column',
-        paddingTop: '30px'
+        paddingTop: '30px',
     },
     link: {
         textDecoration: 'unset',

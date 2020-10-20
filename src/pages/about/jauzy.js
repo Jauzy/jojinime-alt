@@ -23,6 +23,7 @@ import Rating from '@material-ui/lab/Rating';
 
 import HeaderProfile from '../../components/Sections/HeaderProfile'
 import SEO from '../../components/Seo'
+import Layout from '../../components/Layout'
 
 const About = props => {
     const classes = useStyles()
@@ -32,67 +33,10 @@ const About = props => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const projects = [
-        {
-            image: require('../../images/Createit.png'),
-            title: 'Create It!',
-            role: 'Fullstack Developer',
-            url: 'https://www.createit.id',
-            desc: 'Sebuah startup crowdsourcing yang menghubungkan Designer dan Client dalam proses permintaan desain untuk sebuah kategori project atau kontes.'
-        },
-        {
-            image: require('../../images/Jojinime.png'),
-            title: 'Jojinime',
-            role: 'Fullstack Developer',
-            url: 'https://www.jojinime.xyz',
-            desc: 'Web streaming dan download anime tidak resmi yang dibuat dengan motivasi web anime yang elegan dan cepat juga tanpa iklan.'
-        },
-        {
-            image: require('../../images/RPLGDC.png'),
-            title: 'RPLGDC - Inventory Management',
-            role: 'Fullstack Developer',
-            url: 'https://rplgdc-inventory.vercel.app/',
-            desc: 'Web Inventory Management yang dibuat untuk keperluan Laboratorium RPLGDC Informatika Telkom University.'
-        },
-        {
-            image: require('../../images/Dytona.png'),
-            title: 'Dytona Deli Krisp',
-            role: 'Frontend Developer',
-            url: 'https://dytonadelikrisp.com/',
-            desc: 'Website Company Profile untuk Dytona Deli Krisp.'
-        },
-    ]
-    const skills = [
-        {
-            title: 'Gatsby Js',
-            desc: `Saya sudah terbiasa dengan development environment gatsby js. Saya juga pernah menggunakan Netlify sebagai CMS untuk gatsby. 
-            Karena gatsby js merupakan framework react, tentunya skill react yang saya miliki sangat membantu dalam pengembangan dengan gatsby.`,
-            level: 4,
-        },
-        {
-            title: 'React Js',
-            desc: `Saya sudah mendalami react sejak awal pertama kali saya mulai belajar pemrograman web. Sehingga react bisa dibilang sudah ada di luar kepala, sudah seperti teman sehari - hari. 
-            Saya banyak mempelajari framework - framework react seperti recoil, gatsby, dll.`,
-            level: 4.5,
-        },
-        {
-            title: 'React Native',
-            desc: `Sintaks React Native tidak jauh berbeda dari React Web, karna itu saya lebih mudah untuk memahaminya. 
-            Beberapa aplikasi latihan sudah pernah saya buat dengan berbagai teknologi yang dibutuhkan seperti notifikasi, state management, dll.`,
-            level: 3,
-        },
-        {
-            title: 'Node Js Express',
-            desc: `Sejak awal belajar pemrograman web, saya sudah menggunakan 
-            node express sebagai web server saya yang kemudian saya hosting pada Google Cloud Platform. Sampai sekarang, saya
-            bisa membuat realtime server.
-            `,
-            level: 4,
-        },
-    ]
+    
 
     return (
-        <Box className={classes.root}>
+        <Layout style={{ padding: '50px 0' }} >
             <SEO title='About Jauzy' />
             <Container>
                 <HeaderProfile />
@@ -225,17 +169,73 @@ const About = props => {
                     </Grid>
                 </Grid>
             </Container>
-        </Box>
+        </Layout >
     )
 }
 
 export default About
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        padding: '50px 0'
-    },
     bold: {
         fontWeight: 'bold'
     }
 }))
+
+const projects = [
+    {
+        image: require('../../images/Createit.png'),
+        title: 'Create It!',
+        role: 'Fullstack Developer',
+        url: 'https://www.createit.id',
+        desc: 'Sebuah startup crowdsourcing yang menghubungkan Designer dan Client dalam proses permintaan desain untuk sebuah kategori project atau kontes.'
+    },
+    {
+        image: require('../../images/Jojinime.png'),
+        title: 'Jojinime',
+        role: 'Fullstack Developer',
+        url: 'https://www.jojinime.xyz',
+        desc: 'Web streaming dan download anime tidak resmi yang dibuat dengan motivasi web anime yang elegan dan cepat juga tanpa iklan.'
+    },
+    {
+        image: require('../../images/RPLGDC.png'),
+        title: 'RPLGDC - Inventory Management',
+        role: 'Fullstack Developer',
+        url: 'https://rplgdc-inventory.vercel.app/',
+        desc: 'Web Inventory Management yang dibuat untuk keperluan Laboratorium RPLGDC Informatika Telkom University.'
+    },
+    {
+        image: require('../../images/Dytona.png'),
+        title: 'Dytona Deli Krisp',
+        role: 'Frontend Developer',
+        url: 'https://dytonadelikrisp.com/',
+        desc: 'Website Company Profile untuk Dytona Deli Krisp.'
+    },
+]
+const skills = [
+    {
+        title: 'Gatsby Js',
+        desc: `Saya sudah terbiasa dengan development environment gatsby js. Saya juga pernah menggunakan Netlify sebagai CMS untuk gatsby. 
+        Karena gatsby js merupakan framework react, tentunya skill react yang saya miliki sangat membantu dalam pengembangan dengan gatsby.`,
+        level: 4,
+    },
+    {
+        title: 'React Js',
+        desc: `Saya sudah mendalami react sejak awal pertama kali saya mulai belajar pemrograman web. Sehingga react bisa dibilang sudah ada di luar kepala, sudah seperti teman sehari - hari. 
+        Saya banyak mempelajari framework - framework react seperti recoil, gatsby, dll.`,
+        level: 4.5,
+    },
+    {
+        title: 'React Native',
+        desc: `Sintaks React Native tidak jauh berbeda dari React Web, karna itu saya lebih mudah untuk memahaminya. 
+        Beberapa aplikasi latihan sudah pernah saya buat dengan berbagai teknologi yang dibutuhkan seperti notifikasi, state management, dll.`,
+        level: 3,
+    },
+    {
+        title: 'Node Js Express',
+        desc: `Sejak awal belajar pemrograman web, saya sudah menggunakan 
+        node express sebagai web server saya yang kemudian saya hosting pada Google Cloud Platform. Sampai sekarang, saya
+        bisa membuat realtime server.
+        `,
+        level: 4,
+    },
+]

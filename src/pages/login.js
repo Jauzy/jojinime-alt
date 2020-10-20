@@ -13,6 +13,7 @@ import { Link } from 'gatsby'
 import { useRecoilValue } from 'recoil'
 import { userData } from '../config/recoil/atoms/user'
 import SEO from '../components/Seo'
+import Layout from '../components/Layout'
 import { uiConfig, firebaseAuth } from '../config/firebase'
 
 const Login = props => {
@@ -31,41 +32,43 @@ const Login = props => {
     }, [user])
 
     return (
-        <Parallax bgImage={'https://images7.alphacoders.com/881/thumb-1920-881074.jpg'} bgImageAlt='parallaxBgImg' strength={500}
-            blur={3}>
-            <SEO title='Login' />
-            <div className={classes.root}>
-                <Paper className={classes.wrapper} elevation={10}>
-                    <div style={{ marginBottom: '15px', textAlign: 'center' }}>
-                        <Typography variant='h2'>
-                            LOGIN
+        <Layout>
+            <Parallax bgImage={'https://images7.alphacoders.com/881/thumb-1920-881074.jpg'} bgImageAlt='parallaxBgImg' strength={500}
+                blur={3}>
+                <SEO title='Login' />
+                <div className={classes.root}>
+                    <Paper className={classes.wrapper} elevation={10}>
+                        <div style={{ marginBottom: '15px', textAlign: 'center' }}>
+                            <Typography variant='h2'>
+                                LOGIN
                         </Typography>
-                        <Typography variant='body1'>
-                            Fill in your credentials to continue.
+                            <Typography variant='body1'>
+                                Fill in your credentials to continue.
                         </Typography>
-                    </div>
-                    <TextField id='email' value={state.email} onChange={onChange}
-                        helperText='Fill in your email address.' label="Email Address"
-                        variant="filled" className={classes.input} />
-                    <TextField id='password' type='password' value={state.password} onChange={onChange}
-                        helperText='Fill in your password.' label="Password"
-                        variant="filled" className={classes.input} />
-                    <Typography variant='body1' style={{ textAlign: 'right' }}>
-                        <Link to='#'>
-                            Forgot your password?
+                        </div>
+                        <TextField id='email' value={state.email} onChange={onChange}
+                            helperText='Fill in your email address.' label="Email Address"
+                            variant="filled" className={classes.input} />
+                        <TextField id='password' type='password' value={state.password} onChange={onChange}
+                            helperText='Fill in your password.' label="Password"
+                            variant="filled" className={classes.input} />
+                        <Typography variant='body1' style={{ textAlign: 'right' }}>
+                            <Link to='#'>
+                                Forgot your password?
                         </Link>
-                    </Typography>
-                    <Grid container spacing={0} className={classes.center}>
-                        <Grid item xs={12} sm={5} className={classes.button}>
-                            <Button style={{ height: '40px' }} className={classes.input} variant='contained' color='primary'>Login</Button>
+                        </Typography>
+                        <Grid container spacing={0} className={classes.center}>
+                            <Grid item xs={12} sm={5} className={classes.button}>
+                                <Button style={{ height: '40px' }} className={classes.input} variant='contained' color='primary'>Login</Button>
+                            </Grid>
+                            <Grid item xs={12} sm={7}>
+                                <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={7}>
-                            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebaseAuth} />
-                        </Grid>
-                    </Grid>
-                </Paper>
-            </div>
-        </Parallax>
+                    </Paper>
+                </div>
+            </Parallax>
+        </Layout>
     )
 }
 

@@ -1,12 +1,15 @@
 import React from 'react'
-import Layout from './Layout'
+import { RecoilRoot } from 'recoil'
+import Wrapper from './Wrapper'
 
 const RootProvider = ({ element }) => {
 
     return (
-        <Layout>
-            { element }
-        </Layout>
+        <RecoilRoot>
+            <Wrapper>
+                {element}
+            </Wrapper>
+        </RecoilRoot>
     )
 }
 

@@ -61,7 +61,7 @@ const RelationCard = props => {
                                 <div>
                                     {data?.node.genres?.map(genre => (
                                         <Chip label={genre} key={genre} style={{
-                                            margin: '0.5em 0.5em 0 0', backgroundColor: data?.node.coverImage.color
+                                            margin: '0.5em 0.5em 0 0', backgroundColor: data?.node.coverImage.color, color:'white'
                                         }} />
                                     ))}
                                 </div>
@@ -74,4 +74,4 @@ const RelationCard = props => {
     )
 }
 
-export default RelationCard
+export default RelationCard 
