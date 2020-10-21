@@ -61,6 +61,14 @@ const Hamburger = props => {
                             <ListItemText primary="Streaming" />
                         </ListItem>
                     </Link>
+                    <Link to='/user/public' className={classes.link} onClick={() => toggleHamburger(false)}>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <InboxIcon color='primary' />
+                            </ListItemIcon>
+                            <ListItemText primary="User Public Profile" />
+                        </ListItem>
+                    </Link>
                     <Link to='/anime-list' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>

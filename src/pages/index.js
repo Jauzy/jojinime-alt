@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { navigateTo } from 'gatsby'
 
 import Box from '@material-ui/core/Box'
@@ -13,7 +13,7 @@ import ColorLensIcon from '@material-ui/icons/ColorLens';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 import PhonelinkIcon from '@material-ui/icons/Phonelink';
 
-import Header from '../components/AnimePage/Header'
+import Header from '../components/Sections/AnimePage/Header'
 import SEO from '../components/Seo'
 import SittingSvg from '../components/SVG/Sitting'
 import StreamingSvg from '../components/SVG/Streaming'

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Parallax } from 'react-parallax'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Skeleton from '@material-ui/lab/Skeleton'
@@ -11,11 +10,11 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import RssFeedIcon from '@material-ui/icons/RssFeed';
 
 const Header = props => {
-    const { image, title, desc, social, blur } = props
+    const { image, title, desc, social, blur, height } = props
     return (
-        image ? <Parallax bgImage={image} strength={500} blur={blur ? blur : 0}>
-            {!title && <div style={{ height: '60vh' }} />}
-            {title && <div style={{ height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        image ? <Parallax bgImage={image} strength={500} blur={blur ? blur : 0} >
+            {!title && <div style={{ height: height ? height : '60vh' }} />}
+            {title && <div style={{ height: height ? height : '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Box style={{ padding: '2em', color: 'white' }}>
                     <Typography variant='h2' style={{ fontWeight: 'bold' }}>
                         {title}

@@ -13,7 +13,7 @@ import Skeleton from '@material-ui/lab/Skeleton'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import CloseIcon from '@material-ui/icons/Close';
 
-import CharacterCard from '../Cards/CharacterCard'
+import CharacterCard from '../../Cards/CharacterCard'
 import Stepper from './Stepper'
 
 const Characters = props => {

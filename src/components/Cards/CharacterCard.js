@@ -27,7 +27,7 @@ const CharacterCard = ({ character }) => {
             <Card style={{ display: 'flex', maxHeight: '80px', border: '2px solid grey' }} elevation={3}>
                 {
                     character ? <img style={{ marginRight: 'auto', height: '80px', width: '60px', objectFit: 'cover' }}
-                        src={character?.node.image.medium} alt={character?.node.name.full} /> : <Skeleton variant='rect' width='60px' height='80px' />
+                        src={character?.node.image.medium} alt={character?.node.name.full || ''} /> : <Skeleton variant='rect' width='60px' height='80px' />
                 }
                 <Box style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: '0.5em' }}>
                     <Box style={{ marginBottom: 'auto', display: 'flex' }}>
@@ -53,7 +53,7 @@ const CharacterCard = ({ character }) => {
                 </Box>
                 {
                     character ? <img style={{ marginLeft: 'auto', height: '80px', width: '60px', objectFit: 'cover' }}
-                        src={character?.voiceActors[0].image.medium} alt={character?.voiceActors[0].name.full} /> : <Skeleton variant='rect' width='60px' height='80px' />
+                        src={character?.voiceActors[0].image.medium} alt={character?.voiceActors[0].name.full || ''} /> : <Skeleton variant='rect' width='60px' height='80px' />
                 }
             </Card>
             <Popper open={open} anchorEl={anchorEl} placement={'right-start'} style={{ zIndex: 9999 }} transition

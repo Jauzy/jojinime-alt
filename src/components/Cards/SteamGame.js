@@ -1,4 +1,6 @@
 import React from 'react'
+import { navigateTo } from 'gatsby'
+
 import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
@@ -26,19 +28,23 @@ const SteamGame = props => {
         setAnchorEl(null);
     };
 
+    const handleClick = () => {
+        navigateTo(`/anime-page?id=${anime?.id}`)
+    }
+
     const open = Boolean(anchorEl);
 
     const Card = () => (
-        <div className={'steam-game-container'} id='card' >
-            <div className="b-game-card">
-                <div className="b-game-card__cover"
+        <Box className={'steam-game-container'} id='card' >
+            <Box className="b-game-card">
+                <Box className="b-game-card__cover"
                     style={{ backgroundImage: `url(${anime?.coverImage?.extraLarge})`, borderRadius: '10px' }} />
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 
     return (
-        <div onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
+        <Box onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose} style={{ cursor: 'pointer' }} onClick={handleClick}>
             <Card />
             {label && <Box style={{ textOverflow: 'ellipsis' }}>
                 <Typography variant='subtitle1' color='textSecondary' noWrap style={{ fontWeight: 'bold', marginTop: '.5em' }} >
@@ -57,13 +63,13 @@ const SteamGame = props => {
                 }}>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
-                        <div style={{ display: 'flex' }}>
+                        <Box style={{ display: 'flex' }}>
                             <ArrowLeftIcon style={{ fontSize: '4em', marginRight: '-0.45em', color: anime?.coverImage.color }} />
                             <Paper style={{ padding: '2em', maxWidth: '300px' }} elevation={6}>
                                 {anime ? <Typography variant='h6' style={{ color: anime?.coverImage.color, textOverflow: 'ellipsis' }} noWrap>
                                     {anime.title.romaji}
                                 </Typography> : <Skeleton variant='text' width='200px' style={{ marginRight: '1em' }} />}
-                                <div style={{ display: 'flex' }}>
+                                <Box style={{ display: 'flex' }}>
                                     {anime ?
                                         <Typography variant='h6' style={{ marginRight: '1em' }}>
                                             {!anime?.nextAiringEpisode ? `${anime?.season} ${anime?.seasonYear}` :
@@ -89,15 +95,15 @@ const SteamGame = props => {
                                         </Typography>
                                         : <Skeleton variant='text' width='200px' style={{ marginRight: '1em' }} />
                                     }
-                                    <div style={{ margin: '0 1em', display: 'flex', alignItems: 'center', marginLeft: "auto" }}>
+                                    <Box style={{ margin: '0 1em', display: 'flex', alignItems: 'center', marginLeft: "auto" }}>
                                         {anime?.meanScore / 10 >= 8 ? <MoodIcon style={{ color: 'green' }} /> :
                                             anime?.meanScore / 10 >= 7 ? <SentimentDissatisfiedIcon style={{ color: 'yellow' }} /> :
                                                 <SentimentVeryDissatisfiedIcon style={{ color: 'red' }} />}
                                         {anime?.meanScore && <Typography variant='h6' style={{ textAlign: 'center', marginLeft: '0.2em' }}>
                                             {anime?.meanScore / 10}
                                         </Typography>}
-                                    </div>
-                                </div>
+                                    </Box>
+                                </Box>
                                 <Typography variant='body1' style={{ fontWeight: 'bold', marginTop: '0.5em', color: anime?.coverImage.color }}>
                                     {anime?.studios.edges.filter(node => node?.node.isAnimationStudio)[0]?.node.name}
                                 </Typography>
@@ -108,17 +114,17 @@ const SteamGame = props => {
                                     <Skeleton variant='text' style={{ marginRight: '1em' }} width='50px' /> •
                                     <Skeleton variant='text' style={{ marginLeft: '1em' }} width='50px' />
                                 </Box>}
-                                <div>
+                                <Box>
                                     {anime?.genres?.map(genre => (
-                                        <Chip label={genre} key={genre} style={{ margin: '0.5em 0.5em 0 0', backgroundColor: anime?.coverImage.color, color:'white' }} />
+                                        <Chip label={genre} key={genre} style={{ margin: '0.5em 0.5em 0 0', backgroundColor: anime?.coverImage.color, color: 'white' }} />
                                     ))}
-                                </div>
+                                </Box>
                             </Paper>
-                        </div>
+                        </Box>
                     </Fade>
                 )}
             </Popper>
-        </div>
+        </Box>
     )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { navigateTo } from 'gatsby'
-import axios from 'axios'
+import { Parallax } from 'react-scroll-parallax'
+
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -12,22 +13,12 @@ import Button from '@material-ui/core/Button'
 
 import AppsIcon from '@material-ui/icons/Apps';
 
-import SittingSvg from '../SVG/Sitting'
+import SittingSvg from '../../SVG/Sitting'
 
-import ListCard from '../Cards/ListCard'
+import ListCard from '../../Cards/ListCard'
 
-const ListMode = ({ setListMode }) => {
+const ListMode = ({ setListMode, animes }) => {
     const sections = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'
-    const [animes, setAnimes] = React.useState(null)
-
-    React.useEffect(() => {
-        axios.post('https://graphql.anilist.co', {
-            variables: { page: 1 },
-            query
-        }).then(response => {
-            setAnimes(response.data.data.Page.media)
-        }).catch(err => console.log(err.response?.data))
-    }, [])
 
     return (
         <Box style={{ margin: '0 5vw', }}>
@@ -37,10 +28,10 @@ const ListMode = ({ setListMode }) => {
                         <Grid item xs={10} md={10}>
                             <Typography variant='h3' style={{ fontWeight: 'bold' }}>
                                 Anime List Subtitle Indonesia
-                                </Typography>
+                            </Typography>
                             <Typography variant='h4'>
                                 アニメ一覧
-                                </Typography>
+                            </Typography>
                         </Grid>
                         <Grid item xs={2} md style={{ justifyContent: 'flex-end', display: 'flex', alignItems: 'center' }} >
                             <Box>
@@ -82,30 +73,31 @@ const ListMode = ({ setListMode }) => {
                     ))}
                 </Grid>
                 <Grid item xs={12} sm md>
-                    <Box style={{ height: '100%' }}>
-                        <Box>
-                            <SittingSvg />
-                        </Box>
-                        <Paper style={{ height: 'auto', padding: '1em' }}>
-                            <Typography variant='h2' style={{ fontWeight: 'bold' }} align='center'>
-                                News
-                            </Typography>
-                            <Divider />
-                            <Box style={{ margin: '1em' }}>
-                                <Typography variant='h5' style={{ fontWeight: 'bold' }}>
-                                    Website is Still Under Development
-                                </Typography>
-                                <Typography variant='subtitle2' color='textSecondary'>
-                                    Tuesday 20/10/2020 , 3:17
-                                </Typography>
-                                <Typography variant='body1' color='textSecondary' style={{marginTop:'.5em'}}>
-                                    This site is one-man project and takes a lot of effort to done it. But, slowly this website will up and running.
-                                </Typography>
+                    <Parallax y={[50, -50]} tagOuter="div">
+                        <Box style={{ height: '100%' }}>
+                            <Box>
+                                <SittingSvg />
                             </Box>
+                            <Paper style={{ height: 'auto', padding: '1em' }}>
+                                <Typography variant='h2' style={{ fontWeight: 'bold' }} align='center'>
+                                    News
+                            </Typography>
+                                <Divider />
+                                <Box style={{ margin: '1em' }}>
+                                    <Typography variant='h5' style={{ fontWeight: 'bold' }}>
+                                        Website is Still Under Development
+                                </Typography>
+                                    <Typography variant='subtitle2' color='textSecondary'>
+                                        Tuesday 20/10/2020 , 3:17
+                                </Typography>
+                                    <Typography variant='body1' color='textSecondary' style={{ marginTop: '.5em' }}>
+                                        This site is one-man project and takes a lot of effort to done it. But, slowly this website will up and running.
+                                </Typography>
+                                </Box>
 
-                        </Paper>
-                    </Box>
-
+                            </Paper>
+                        </Box>
+                    </Parallax>
                 </Grid>
             </Grid>
         </Box>
@@ -113,39 +105,3 @@ const ListMode = ({ setListMode }) => {
 }
 
 export default ListMode
-
-const query = `
-query($page: Int) {
-    Page(perPage: 50, page: $page){
-        media {
-        title {
-            romaji
-            english
-            native
-        }
-        nextAiringEpisode {
-            episode
-            timeUntilAiring
-        }
-        season
-        seasonYear
-        coverImage{
-            color
-            extraLarge
-        }
-        meanScore
-        studios {
-            edges {
-            node {
-                isAnimationStudio
-                name
-            }
-            }
-        }
-        episodes
-        format
-        genres
-        }
-    }   
-}
-`

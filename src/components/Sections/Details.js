@@ -3,8 +3,8 @@ import { Parallax } from 'react-scroll-parallax';
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 
-import Header from '../AnimePage/Header'
-import Details from '../AnimePage/Details'
+import Header from './AnimePage/Header'
+import Details from './AnimePage/Details'
 
 const DetailsSection = props => {
     const { anime } = props

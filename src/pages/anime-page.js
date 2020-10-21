@@ -7,14 +7,14 @@ import queryString from 'query-string'
 import { useRecoilState } from 'recoil'
 
 import SEO from '../components/Seo'
-import SpeedDial from '../components/AnimePage/SpeedDial'
+import SpeedDial from '../components/Sections/AnimePage/SpeedDial'
 import Layout from '../components/Layout'
 
 import Characters from '../components/Sections/Characters'
 import Details from '../components/Sections/Details'
 import Recommendations from '../components/Sections/Recommendations'
 import Share from '../components/Sections/Share'
-import Description from '../components/AnimePage/Description'
+import Description from '../components/Sections/AnimePage/Description'
 import Episodes from '../components/Sections/Episodes'
 
 import { animeData } from '../config/recoil/atoms/anime'
@@ -32,6 +32,7 @@ const AnimePage = props => {
                 setAnime(response.data.data.Media)
             }).catch(err => console.log(err.response.data))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.location])
 
     return (

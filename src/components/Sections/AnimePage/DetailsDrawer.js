@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Chip from '@material-ui/core/Chip'
-import RelationCard from '../Cards/RelationCard'
 import Container from '@material-ui/core/Container'
 import Drawer from '@material-ui/core/Drawer'
 import CloseIcon from '@material-ui/icons/Close';
@@ -17,6 +16,8 @@ import FavouriteIcon from '@material-ui/icons/Favorite'
 import StarRatings from 'react-star-ratings';
 import YouTube from 'react-youtube'
 
+import RelationCard from '../../Cards/RelationCard'
+
 const DetailsDrawer = ({ details, isDetailsOpen, toggleDetailsDrawer }) => {
     const classes = useStyles()
     const trailerOnReady = (e) => {
@@ -26,7 +27,7 @@ const DetailsDrawer = ({ details, isDetailsOpen, toggleDetailsDrawer }) => {
     return (
         <Drawer anchor={'bottom'} open={isDetailsOpen} onClose={toggleDetailsDrawer}>
             <Box style={{ width: '100vw', minHeight: '100vh', overflowX: 'hidden', paddingBottom: '2em' }}>
-                <img src={details?.bannerImage} width='100%' style={{ maxHeight: '400px', objectFit: 'cover' }} />
+                <img src={details?.bannerImage} alt='drawer-banner' width='100%' style={{ maxHeight: '400px', objectFit: 'cover' }} />
 
                 <CloseIcon onClick={toggleDetailsDrawer}
                     style={{ position: 'absolute', zIndex: '9', top: '5%', right: '5%', fontSize: '40px', cursor: 'pointer' }} />
@@ -93,7 +94,7 @@ const DetailsDrawer = ({ details, isDetailsOpen, toggleDetailsDrawer }) => {
                                             <Box style={{ height: '10px', width: '100px', margin: '0px 15px', borderRadius: '5px', backgroundColor: '#3F51B5' }} />
                                         </Box>
                                         <Typography variant='h4' className={classes.bold} gutterBottom>
-                                            Studio {details?.studios.edges.filter(node => node.node.isAnimationStudio)[0].node.name}
+                                            Studio {details?.studios.edges.filter(node => node.node.isAnimationStudio)[0]?.node.name}
                                         </Typography>
                                     </Grid>
                                     <Grid item xs={12} sm={6} style={{ display: 'flex' }}>

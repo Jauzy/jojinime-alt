@@ -13,7 +13,7 @@ import PlaylistIcon from '@material-ui/icons/PlaylistAdd'
 import FavouriteIcon from '@material-ui/icons/Favorite'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 
-import SteamGame from '../Cards/SteamGame'
+import SteamGame from '../../Cards/SteamGame'
 import DetailsDrawer from './DetailsDrawer'
 
 const Details = props => {

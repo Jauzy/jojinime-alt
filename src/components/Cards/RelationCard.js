@@ -5,6 +5,7 @@ import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import Chip from '@material-ui/core/Chip'
+import Box from '@material-ui/core/Chip'
 
 const RelationCard = props => {
     const { data } = props
@@ -21,16 +22,16 @@ const RelationCard = props => {
     const open = Boolean(anchorEl);
 
     const Card = () => (
-        <div className={'steam-game-container'} >
-            <div className="b-game-card">
-                <div className="b-game-card__cover"
+        <Box className={'steam-game-container'} >
+            <Box className="b-game-card">
+                <Box className="b-game-card__cover"
                     style={{ backgroundImage: `url(${data?.node.coverImage?.large})`, borderRadius: '10px' }} />
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 
     return (
-        <div onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose} style={props.style}>
+        <Box onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose} style={props.style}>
             <Card />
             <Popper open={open} anchorEl={anchorEl} placement={'right-start'} style={{ zIndex: 9999 }} transition
                 modifiers={{
@@ -44,7 +45,7 @@ const RelationCard = props => {
                 }}>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps} timeout={350}>
-                        <div style={{ display: 'flex' }}>
+                        <Box style={{ display: 'flex' }}>
                             <ArrowLeftIcon style={{ fontSize: '4em', marginRight: '-0.45em', color: data?.node.coverImage.color }} />
                             <Paper style={{ padding: '2em' }} elevation={6}>
                                 <Typography variant='h6' style={{ fontWeight: 'bold', color: data?.node.coverImage.color }}>
@@ -58,19 +59,19 @@ const RelationCard = props => {
                                         {data?.node.type}
                                     </strong>  •  {data?.node.format}
                                 </Typography>
-                                <div>
+                                <Box>
                                     {data?.node.genres?.map(genre => (
                                         <Chip label={genre} key={genre} style={{
                                             margin: '0.5em 0.5em 0 0', backgroundColor: data?.node.coverImage.color, color:'white'
                                         }} />
                                     ))}
-                                </div>
+                                </Box>
                             </Paper>
-                        </div>
+                        </Box>
                     </Fade>
                 )}
             </Popper>
-        </div>
+        </Box>
     )
 }
 

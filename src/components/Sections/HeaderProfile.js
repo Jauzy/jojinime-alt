@@ -22,7 +22,8 @@ const HeaderProfile = props => {
                     MUHAMMAD ABDURRAHMAN AL - JAUZY
                     <Avatar alt='Joji' src={require('../../images/Joji-Square.jpg')} style={{ width: '8em', height: '8em', border: '2px solid grey' }} />
                 </Typography>
-                <img src={require('../../images/Joji.png')} onLoad={() => setLoaded(true)} style={{ filter: 'brigthness(50%)', marginLeft: 'auto', zIndex: 3, maxWidth: '500px' }} />
+                <img src={require('../../images/Joji.png')} alt='Joji'
+                    onLoad={() => setLoaded(true)} style={{ filter: 'brigthness(50%)', marginLeft: 'auto', zIndex: 3, maxWidth: '500px' }} />
                 {!loaded && <Skeleton variant='rect' style={{ filter: 'brigthness(50%)', marginLeft: 'auto', zIndex: 3, maxWidth: '500px' }} width='100%' height='700px' />}
             </Grid>
             <Grid item xs={12} md={4} style={{ margin: 'auto 0' }}>

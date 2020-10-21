@@ -16,7 +16,8 @@ import SEO from '../components/Seo'
 import Layout from '../components/Layout'
 import { uiConfig, firebaseAuth } from '../config/firebase'
 
-const Login = props => {
+const Login = ({ navigate }) => {
+
     const classes = useStyles()
     const [state, setState] = useState({
         email: '', password: '', error: false
@@ -28,7 +29,8 @@ const Login = props => {
     }
 
     useEffect(() => {
-        if (user) props.navigate('/')
+        if (user) navigate('/')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     return (

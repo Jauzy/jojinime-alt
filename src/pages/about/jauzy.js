@@ -33,7 +33,7 @@ const About = props => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    
+
 
     return (
         <Layout style={{ padding: '50px 0' }} >
@@ -143,7 +143,7 @@ const About = props => {
                             <Link to={item.url} style={{ textDecoration: 'none' }}>
                                 <Card style={{ height: '100%' }}>
                                     <CardActionArea style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                                        <img src={item.image} width='100%' />
+                                        <img src={item.image} alt={item.title || ''} width='100%' />
                                         <CardContent style={{ marginBottom: 'auto' }}>
                                             <Typography variant="h5" component="h2">
                                                 {item.title}
@@ -183,34 +183,35 @@ const useStyles = makeStyles((theme) => ({
 
 const projects = [
     {
-        image: require('../../images/Createit.png'),
+        image: require('../../images/portofolio/Createit.png'),
         title: 'Create It!',
         role: 'Fullstack Developer',
         url: 'https://www.createit.id',
         desc: 'Sebuah startup crowdsourcing yang menghubungkan Designer dan Client dalam proses permintaan desain untuk sebuah kategori project atau kontes.'
     },
     {
-        image: require('../../images/Jojinime.png'),
+        image: require('../../images/portofolio/Jojinime.png'),
         title: 'Jojinime',
         role: 'Fullstack Developer',
         url: 'https://www.jojinime.xyz',
         desc: 'Web streaming dan download anime tidak resmi yang dibuat dengan motivasi web anime yang elegan dan cepat juga tanpa iklan.'
     },
     {
-        image: require('../../images/RPLGDC.png'),
+        image: require('../../images/portofolio/RPLGDC.png'),
         title: 'RPLGDC - Inventory Management',
         role: 'Fullstack Developer',
         url: 'https://rplgdc-inventory.vercel.app/',
         desc: 'Web Inventory Management yang dibuat untuk keperluan Laboratorium RPLGDC Informatika Telkom University.'
     },
     {
-        image: require('../../images/Dytona.png'),
+        image: require('../../images/portofolio/Dytona.png'),
         title: 'Dytona Deli Krisp',
         role: 'Frontend Developer',
         url: 'https://dytonadelikrisp.com/',
         desc: 'Website Company Profile untuk Dytona Deli Krisp.'
     },
 ]
+
 const skills = [
     {
         title: 'Gatsby Js',

@@ -50,6 +50,7 @@ const Register = props => {
             if (activeStep === 0)
                 handleNext()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     return (

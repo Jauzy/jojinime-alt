@@ -1,7 +1,4 @@
 import React from 'react'
-import { navigateTo } from 'gatsby'
-import axios from 'axios'
-
 import Tooltip from '@material-ui/core/Tooltip'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,16 +19,15 @@ import SearchIcon from '@material-ui/icons/Search';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 
-import SteamGame from '../../components/Cards/SteamGame'
+import SteamGame from '../../Cards/SteamGame'
 
-const queryString = require('query-string');
-
-const GridMode = ({ setListMode, location }) => {
+const GridMode = ({ setListMode, animes }) => {
     const classes = useStyles();
     const [state, setState] = React.useState({
-        search: '', season: '', year: '', status: '', genres: [], page: 1
+        search: '', season: '', year: '', status: '', genres: []
     })
-    const [animes, setAnimes] = React.useState(null)
+    const [animeList, setAnimeList] = React.useState(null)
+    const [page, setPage] = React.useState(1)
 
     const onChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.value })
@@ -53,18 +49,13 @@ const GridMode = ({ setListMode, location }) => {
     ]
 
     const changePage = (e, value) => {
-        navigateTo(`/anime-list?page=${value}`)
+        setPage(value)
     }
 
     React.useEffect(() => {
-        setState({ ...state, page: parseInt(queryString.parse(location.search).page) || 1 })
-        axios.post('https://graphql.anilist.co', {
-            variables: { page: queryString.parse(location.search).page },
-            query
-        }).then(response => {
-            setAnimes(response.data.data.Page.media)
-        }).catch(err => console.log(err.response?.data))
-    }, [location.search])
+        const minimal = page * 24 - 24
+        setAnimeList(animes?.slice(minimal, minimal + 24))
+    }, [animes, page])
 
     return (
         <Box>
@@ -121,7 +112,7 @@ const GridMode = ({ setListMode, location }) => {
                 </Box>}
             </Container>
 
-            {!animes && <Container style={{ marginTop: '1em' }}>
+            {!animeList && <Container style={{ marginTop: '1em' }}>
                 <Grid container spacing={3}>
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9]?.map((item, index) => (
                         <Grid item xs={6} sm={3} md={2} key={index + 'item'}>
@@ -136,14 +127,14 @@ const GridMode = ({ setListMode, location }) => {
 
             <Container style={{ marginTop: '1em' }}>
                 <Grid container spacing={3}>
-                    {animes?.map((item, index) => (
+                    {animeList?.map((item, index) => (
                         <Grid item xs={6} sm={3} md={2} key={index + 'item'}>
                             <SteamGame anime={item} label />
                         </Grid>
                     ))}
                 </Grid>
                 <Box style={{ display: 'flex', justifyContent: 'center', marginTop: '2em' }}>
-                    <Pagination count={10} page={state.page} onChange={changePage} color="primary" />
+                    <Pagination count={Math.ceil(animes?.length / 24)} page={page} onChange={changePage} color="primary" />
                 </Box>
             </Container>
         </Box>
@@ -160,39 +151,3 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
 }));
-
-const query = `
-query($page: Int) {
-    Page(perPage: 18, page: $page){
-        media {
-        title {
-            romaji
-            english
-            native
-        }
-        nextAiringEpisode {
-            episode
-            timeUntilAiring
-        }
-        season
-        seasonYear
-        coverImage{
-            color
-            extraLarge
-        }
-        meanScore
-        studios {
-            edges {
-            node {
-                isAnimationStudio
-                name
-            }
-            }
-        }
-        episodes
-        format
-        genres
-        }
-    }   
-}
-`
