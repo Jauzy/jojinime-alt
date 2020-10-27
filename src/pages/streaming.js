@@ -62,7 +62,7 @@ const Streaming = ({ location }) => {
 
             <Box style={{ margin: '0 5vw', }}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} md={9}>
+                    <Grid item xs={12} md={9} id='video-section'>
                         <Paper elevation={6} style={{ marginBottom: '2em' }}>
                             {anime ? <ReactJWPlayer
                                 playerId={player.id}
@@ -85,7 +85,8 @@ const Streaming = ({ location }) => {
                         <Typography variant='h4' color='textSecondary' style={{ fontWeight: 'bold' }} gutterBottom>
                             Episodes List
                         </Typography>
-                        <EpisodesList title={anime?.title} streamingEpisodes={anime?.streamingEpisodes} changeEpisode={changeEpisode} episode={episode} />
+                        <EpisodesList title={anime?.title} streamingEpisodes={anime?.streamingEpisodes}
+                            changeEpisode={changeEpisode} episode={episode} maxHeight={document.getElementById('video-section')?.offsetHeight} />
                     </Grid>
                 </Grid>
             </Box>

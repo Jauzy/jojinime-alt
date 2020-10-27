@@ -12,7 +12,7 @@ import Skeleton from '@material-ui/lab/Skeleton'
 const DetailBody = ({ anime }) => {
     return (
         <Box>
-            <Typography variant='body1' dangerouslySetInnerHTML={{ __html: anime?.description }} />
+            <Typography variant='body1' color='textSecondary' dangerouslySetInnerHTML={{ __html: anime?.description }} />
             {!anime && <Skeleton variant='text' />}
             {!anime && <Skeleton variant='text' />}
             {!anime && <Skeleton variant='text' />}

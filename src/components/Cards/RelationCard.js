@@ -5,7 +5,7 @@ import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import Chip from '@material-ui/core/Chip'
-import Box from '@material-ui/core/Chip'
+import Box from '@material-ui/core/Box'
 
 const RelationCard = props => {
     const { data } = props
@@ -47,12 +47,12 @@ const RelationCard = props => {
                     <Fade {...TransitionProps} timeout={350}>
                         <Box style={{ display: 'flex' }}>
                             <ArrowLeftIcon style={{ fontSize: '4em', marginRight: '-0.45em', color: data?.node.coverImage.color }} />
-                            <Paper style={{ padding: '2em' }} elevation={6}>
+                            <Paper style={{ padding: '2em', maxWidth: '300px' }} elevation={6}>
+                                <Typography variant='h6' style={{ textOverflow: 'ellipsis' }} noWrap>
+                                    {data?.node.title.romaji}
+                                </Typography>
                                 <Typography variant='h6' style={{ fontWeight: 'bold', color: data?.node.coverImage.color }}>
                                     {data?.relationType.replace('_', ' ')}
-                                </Typography>
-                                <Typography variant='body2' style={{ marginRight: '1em', maxWidth:'300px' }}>
-                                    {data?.node.title.romaji}
                                 </Typography>
                                 <Typography variant='body2' style={{ margin: '0.5em 0' }}>
                                     <strong style={{ color: data?.node.coverImage.color }}>
@@ -62,7 +62,7 @@ const RelationCard = props => {
                                 <Box>
                                     {data?.node.genres?.map(genre => (
                                         <Chip label={genre} key={genre} style={{
-                                            margin: '0.5em 0.5em 0 0', backgroundColor: data?.node.coverImage.color, color:'white'
+                                            margin: '0.5em 0.5em 0 0', backgroundColor: data?.node.coverImage.color, color: 'white'
                                         }} />
                                     ))}
                                 </Box>

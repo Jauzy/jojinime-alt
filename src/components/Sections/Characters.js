@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Character from './AnimePage/Characters'
 
 const CharactersSection = props => {
-    const { characters } = props
+    const { characters, charaImage } = props
     return (
         <section id='characters'>
             <div className='skew-divider-secondary' style={{ marginTop: '2em' }} />
@@ -16,7 +16,7 @@ const CharactersSection = props => {
                 <Grid container spacing={1}>
                     <Grid item xs={11}>
                         <Container style={{ overflow: 'hidden', paddingBottom: '7em' }}>
-                            <Character characters={characters} />
+                            <Character characters={characters} charaImage={charaImage} />
                         </Container>
                     </Grid>
                     <Grid item xs={1} style={{ display: 'flex', alignItems: 'center' }}>

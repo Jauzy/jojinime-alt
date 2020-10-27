@@ -17,7 +17,7 @@ import CharacterCard from '../../Cards/CharacterCard'
 import Stepper from './Stepper'
 
 const Characters = props => {
-    const { characters } = props
+    const { characters, charaImage } = props
     const [activeStep, setActiveStep] = useState(0);
     const [state, setState] = useState({
         isDrawerOpen: false
@@ -29,30 +29,28 @@ const Characters = props => {
     useEffect(() => {
         if (ref && ref.current)
             ref.current.slickGoTo(activeStep)
-        setActive(characters?.edges.filter(item => item.node.id === chara[activeStep].id)[0])
-    }, [activeStep, characters])
+        if (charaImage && charaImage?.length > 0) {
+            setActive(characters?.edges.filter(item => item.node.id === parseInt(charaImage[activeStep].id))[0])
+        }
+    }, [activeStep, characters, charaImage])
 
     return (
         <Box>
             <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={4}>
 
-                        {/* chara img */}
-                        {characters ?
+                {(charaImage && charaImage?.length > 0) && <Grid container spacing={3}>
+                    <Grid item xs={12} sm={4}>
+                        {charaImage ?
                             <Slider {...settings} ref={ref}>
-                                {chara.map(item => (
+                                {charaImage.map(item => (
                                     <img src={item.url} alt='character' key={item} width='100%' style={{ margin: 'auto' }} />
                                 ))}
                             </Slider> :
                             <Skeleton variant='rect' width='100%' height='100%' style={{ minHeight: '300px' }} />
                         }
-
                     </Grid>
                     <Grid item xs={12} sm={8} className={classes.grid}>
                         <Box className={classes.gridChild}>
-
-                            {/* chara details */}
                             <Box>
                                 <Typography variant='h4'>
                                     {active?.node.name.full}
@@ -63,8 +61,8 @@ const Characters = props => {
                                 </Typography>
                                 {!characters && <Skeleton variant='text' width='300px' height='50px' style={{ margin: 'auto' }} />}
                                 {characters ?
-                                    <Stepper activeStep={activeStep} setActiveStep={setActiveStep} steps={chara} characters={characters?.edges} />
-                                    : <Skeleton variant='rect' style={{margin:'1em 0'}} />
+                                    <Stepper activeStep={activeStep} setActiveStep={setActiveStep} steps={charaImage} characters={characters?.edges} />
+                                    : <Skeleton variant='rect' style={{ margin: '1em 0' }} />
                                 }
                                 <Typography variant='body1' style={{ textAlign: 'justify' }}
                                     dangerouslySetInnerHTML={{ __html: active?.node.description }} >
@@ -74,11 +72,11 @@ const Characters = props => {
                                 {!characters && <Skeleton variant='text' width='100%' />}
                                 {!characters && <Skeleton variant='text' width='100%' />}
                             </Box>
-
                         </Box>
                     </Grid>
-                </Grid>
-                <Grid container spacing={3} style={{ margin: '1em 0' }}>
+                </Grid>}
+
+                {(charaImage && charaImage?.length > 0) ? <Grid container spacing={3} style={{ margin: '1em 0' }}>
 
                     {/* chara list */}
                     <Hidden xsDown>
@@ -98,7 +96,17 @@ const Characters = props => {
                     </Hidden>
 
                 </Grid>
-                <Button style={{ marginLeft: 'auto' }} onClick={() => setState({ ...state, isDrawerOpen: true })} endIcon={<ArrowForward />} variant='contained' color='primary'>See All Characters</Button>
+                    :
+                    <Grid container spacing={3} style={{ marginTop: '2em' }}>
+                        {characters?.edges.map((node, index) => (
+                            <Grid item xs={12} sm={6} md={4} key={node.node.name.full}>
+                                <CharacterCard character={node} />
+                            </Grid>
+                        ))}
+                    </Grid>}
+
+                {(charaImage && charaImage?.length > 0) && <Button style={{ marginLeft: 'auto' }} onClick={() => setState({ ...state, isDrawerOpen: true })}
+                    endIcon={<ArrowForward />} variant='contained' color='primary'>See All Characters</Button>}
             </Box>
 
             {/* chara drawer */}

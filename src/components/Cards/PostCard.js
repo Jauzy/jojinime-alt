@@ -29,6 +29,11 @@ const PostCard = props => {
         setAnchorEl(null);
     };
 
+    const isMobile = (msg) => {
+        if(typeof window !== 'undefined') 
+            return window?.innerWidth > 700 ? msg : ""
+    }
+
     return (
         <Paper style={{ margin: '1em 0', padding: '1em' }}>
             <Box style={{ display: 'flex', alignItems: 'center' }}>
@@ -74,24 +79,24 @@ const PostCard = props => {
                 <Typography variant='body1' style={{ margin: '.5em 0' }}>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </Typography>
-                <img alt='post' width='100%' style={{borderRadius:'10px'}} src={'https://storage.googleapis.com/jojinime-anime/profile_pict/Jojinime-jojinime@gmail.com-1596091752572'} />
+                <img alt='post' width='100%' style={{ borderRadius: '10px' }} src={'https://storage.googleapis.com/jojinime-anime/profile_pict/Jojinime-jojinime@gmail.com-1596091752572'} />
             </Box>
             <Box style={{ margin: '1em 0' }}>
                 <Divider />
                 <Grid container spacing={3}>
                     <Grid item xs>
                         <Button startIcon={<ThumbUpAltIcon />} fullWidth>
-                            {window.innerWidth > 700 ? `Like` : ""}
+                            {isMobile('Like')}
                         </Button>
                     </Grid>
                     <Grid item xs>
                         <Button startIcon={<ChatBubbleOutlineIcon />} fullWidth>
-                            {window.innerWidth > 700 ? `Comment` : ""}
+                            {isMobile('Comment')}
                         </Button>
                     </Grid>
                     <Grid item xs>
                         <Button startIcon={<ShareIcon />} fullWidth>
-                            {window.innerWidth > 700 ? `Share` : ""}
+                            {isMobile('Share')}
                         </Button>
                     </Grid>
                 </Grid>

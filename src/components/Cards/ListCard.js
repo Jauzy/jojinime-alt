@@ -1,4 +1,6 @@
 import React from 'react'
+import { navigateTo } from 'gatsby'
+
 import Button from '@material-ui/core/Button'
 import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
@@ -30,9 +32,10 @@ const ListCard = ({ anime }) => {
     const open = Boolean(anchorEl);
     return (
         <Box>
-            <Button color='default' style={{ textAlign: 'start' }} startIcon={<ChevronRightIcon />} onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
+            <Button color='default' style={{ textAlign: 'start' }} startIcon={<ChevronRightIcon />} onClick={() => navigateTo(`/anime-page?id=${anime?.id}`)}
+                onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
                 <Typography variant='inherit'>
-                    {anime.title.romaji}
+                    {anime?.title.romaji}
                 </Typography>
             </Button>
             <Popper open={open} anchorEl={anchorEl} placement={'right-start'} style={{ zIndex: 99 }} transition

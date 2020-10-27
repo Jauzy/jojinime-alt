@@ -1,13 +1,11 @@
 import React, { useEffect } from "react"
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-
-import axios from 'axios'
+import baseURL from '../config/baseURL'
 import queryString from 'query-string'
 import { useRecoilState } from 'recoil'
 
-import SEO from '../components/Seo'
-import SpeedDial from '../components/Sections/AnimePage/SpeedDial'
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
+
 import Layout from '../components/Layout'
 
 import Characters from '../components/Sections/Characters'
@@ -17,20 +15,19 @@ import Share from '../components/Sections/Share'
 import Description from '../components/Sections/AnimePage/Description'
 import Episodes from '../components/Sections/Episodes'
 
+import SEO from '../components/Seo'
+import SpeedDial from '../components/Sections/AnimePage/SpeedDial'
+
 import { animeData } from '../config/recoil/atoms/anime'
-import { animeQuery } from '../config/queries'
 
 const AnimePage = props => {
     const [anime, setAnime] = useRecoilState(animeData)
 
     useEffect(() => {
         if (!anime || anime?.id !== queryString.parse(props.location.search).id) {
-            axios.post('https://graphql.anilist.co', {
-                variables: { id: queryString.parse(props.location.search).id },
-                query: animeQuery
-            }).then(response => {
-                setAnime(response.data.data.Media)
-            }).catch(err => console.log(err.response.data))
+            baseURL.get(`/anime/${queryString.parse(props.location.search).id}`).then(response => {
+                setAnime(response.data.anime)
+            }).catch(err => console.log(err.data))
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.location])
@@ -41,7 +38,7 @@ const AnimePage = props => {
             <SpeedDial location={props.location} />
             <Details anime={anime} />
 
-            <Characters characters={anime?.characters} />
+            <Characters characters={anime?.characters} charaImage={anime?.imageCharacters} />
 
             <section id='description'>
                 <div className='skew-divider' />

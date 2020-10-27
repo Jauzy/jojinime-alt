@@ -45,14 +45,6 @@ const Hamburger = props => {
                 </div>}
                 <List component="nav" className={classes.list}>
                     <Divider />
-                    <Link to='/anime-page?id=101280' className={classes.link} onClick={() => toggleHamburger(false)}>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <InboxIcon color='primary' />
-                            </ListItemIcon>
-                            <ListItemText primary="Anime Page" />
-                        </ListItem>
-                    </Link>
                     <Link to='/streaming?id=21878' className={classes.link} onClick={() => toggleHamburger(false)}>
                         <ListItem button>
                             <ListItemIcon>

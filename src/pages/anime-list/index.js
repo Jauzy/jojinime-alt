@@ -1,5 +1,6 @@
 import React from 'react'
-import axios from 'axios'
+import baseURL from '../../config/baseURL'
+import { useRecoilState } from 'recoil'
 
 import Header from '../../components/Sections/AnimePage/Header'
 import SEO from '../../components/Seo'
@@ -7,18 +8,19 @@ import Layout from '../../components/Layout'
 import GridMode from '../../components/Sections/AnimeList/GridMode'
 import ListMode from '../../components/Sections/AnimeList/ListMode'
 
+import { animesData } from '../../config/recoil/atoms/anime'
+
 const AnimeList = props => {
 
     const [isListMode, setMode] = React.useState(true)
-    const [animes, setAnimes] = React.useState(null)
+    const [animes, setAnimes] = useRecoilState(animesData)
 
     React.useEffect(() => {
-        axios.post('https://graphql.anilist.co', {
-            variables: { page: 1 },
-            query
-        }).then(response => {
-            setAnimes(response.data.data.Page.media)
-        }).catch(err => console.log(err.response?.data))
+        if (!animes) {
+            baseURL.get('/anime').then(response => {
+                setAnimes(response.data.animes)
+            }).catch(err => console.log(err.response?.data))
+        }
     }, [])
 
     return (
@@ -36,40 +38,3 @@ const AnimeList = props => {
 }
 
 export default AnimeList
-
-const query = `
-query($page: Int) {
-    Page(perPage: 50, page: $page){
-        media {
-        id
-        title {
-            romaji
-            english
-            native
-        }
-        nextAiringEpisode {
-            episode
-            timeUntilAiring
-        }
-        season
-        seasonYear
-        coverImage{
-            color
-            extraLarge
-        }
-        meanScore
-        studios {
-            edges {
-            node {
-                isAnimationStudio
-                name
-            }
-            }
-        }
-        episodes
-        format
-        genres
-        }
-    }   
-}
-`
